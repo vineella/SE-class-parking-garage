@@ -17,13 +17,15 @@ public class GUI_L implements ActionListener {
     private JButton button_5;
     private JButton button_r;
     private static String lv;
+    public static boolean isDroppingOff;
 
     //this holds the info of which spot a user has taken
     private int which_level;
     private int which_spot;
 
-    public GUI_L(String level) {
+    public GUI_L(String level, boolean isLeavingCar) {
         lv=level;
+        isDroppingOff=isLeavingCar;
 
         frame = new JFrame();
 
@@ -75,30 +77,39 @@ public class GUI_L implements ActionListener {
     }
 
     public static void main(String[] args){
-        new GUI_L(lv);
+        new GUI_L(lv, isDroppingOff);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //which_spot=Integer.parseInt(e.getActionCommand());
         if(e.getActionCommand().equals("Return to Previous Page")){
             frame.setVisible(false);
-        }else{
-            which_spot=Integer.parseInt(e.getActionCommand());
+        }else if(isDroppingOff == true){
             if(e.getActionCommand().equals("1")){
                 button_1.setText("Spot 1 TAKEN");
-                button_1.removeActionListener(this);
             }else if(e.getActionCommand().equals("2")){
                 button_2.setText("Spot 2 TAKEN");
-                button_2.removeActionListener(this);
             }else if(e.getActionCommand().equals("3")){
                 button_3.setText("Spot 3 TAKEN");
-                button_3.removeActionListener(this);
             }else if(e.getActionCommand().equals("4")){
                 button_4.setText("Spot 4 TAKEN");
-                button_4.removeActionListener(this);
             }else if(e.getActionCommand().equals("5")){
                 button_5.setText("Spot 5 TAKEN");
-                button_5.removeActionListener(this);
+            }
+            panel.revalidate();
+            panel.repaint();
+        }else if(isDroppingOff == false){
+            if(e.getActionCommand().equals("Spot 1 TAKEN")){
+                button_1.setText("1");
+            }else if(e.getActionCommand().equals("Spot 2 TAKEN")){
+                button_2.setText("2");
+            }else if(e.getActionCommand().equals("Spot 3 TAKEN")){
+                button_3.setText("3");
+            }else if(e.getActionCommand().equals("Spot 4 TAKEN")){
+                button_4.setText("4");
+            }else if(e.getActionCommand().equals("Spot 5 TAKEN")){
+                button_5.setText("5");
             }
             panel.revalidate();
             panel.repaint();
