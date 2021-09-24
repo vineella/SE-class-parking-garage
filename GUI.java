@@ -43,7 +43,7 @@ public class GUI implements ActionListener{
         button_2.addActionListener(this);
         button_3.addActionListener(this);
 
-        label = new JLabel("Please select a parking space. :)");
+        label = new JLabel("Please indicate the space where you parked. :)");
 
 
         panel = new JPanel();
