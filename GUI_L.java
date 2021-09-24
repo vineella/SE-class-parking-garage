@@ -41,7 +41,7 @@ public class GUI_L implements ActionListener {
         button_5.addActionListener(this);
         button_r.addActionListener(this);
 
-        label = new JLabel("Please select a parking space. :)");
+        label = new JLabel("Please indicate the space where you parked. :)");
 
         panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(120, 120, 40, 120));
