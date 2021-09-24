@@ -50,15 +50,21 @@ public class GUI_SS implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //the value of IDO doesn't matter in the line below
+        //this is just to initialize it in a form the final else
+        //statement will accept.
+        boolean IDO =true;
         if(e.getActionCommand().equals("c")){
-            garage.isDroppingOff = true;
+            IDO = true;
+            garage.isDroppingOff = IDO;
         }else if(e.getActionCommand().equals("l")){
-            garage.isDroppingOff = false;
+            IDO = false;
+            garage.isDroppingOff = IDO;
         }
         if(gDoesExist==1){
             garage.frame.setVisible(true);
         }else{
-            garage = new GUI(true);
+            garage = new GUI(IDO);
             gDoesExist = 1;
         }
     }
