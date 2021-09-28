@@ -1,0 +1,23 @@
+Data that we are going to store about the customer 
+(revised list) 
+-Car plate number 
+-Car model 
+-Customer first and last name 
+-Customer payment type ( cash or credit ) 
+-generated ticket number 
+- Pricing based on how many hours they want it 
+(1 dollar per one hour, max of 12 hours for just vistors) 
+(18 dollar for lost ticket pricing) 
+(pricing for 1 month block time, 3 month, 6 months, 12 months) 
+(1 month = $236.20- $245) ( This can be swapped to any number tbh) ( Just the average amount I saw while doing research based on philly area unless your looking at something like logan sqaure thats like $500)As for the 3 months, 6 months, and 12 months we can go with soemthing like a 10, 15, 20 percent discount since the time durations are longer 
+For example: 
+ 3 months = 661.5 with a 10 percent discount using the base of 245 ( still need some profit)
+6 months = 1249.50 
+12 months = 2400 with a base price of 250 and the 20% discount 
+(discount only applied with a membership fee) 
+-membership fee gives 10% off regular parking up to 12 hours
+price of that would be like = $35 per month? <- this could be changed to anything tbh. 
+
+
+
+ 
