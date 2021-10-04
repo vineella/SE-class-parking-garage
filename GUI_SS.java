@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Scanner;
 
 public class GUI_SS implements ActionListener{
     private JLabel label;
@@ -14,6 +15,8 @@ public class GUI_SS implements ActionListener{
     private JButton leaving;
     private GUI garage;
     private int gDoesExist;
+    private int numFloor;
+    private int numSpot;
 
     public GUI_SS(){
 
@@ -44,7 +47,26 @@ public class GUI_SS implements ActionListener{
         frame.setVisible(true);
     }
 
+    public static int findNumFloor(){
+        System.out.println("How many floors would you like in your garage?");
+        Scanner in = new Scanner(System.in);
+        int numFloor = in.nextInt();
+        return numFloor;
+    }
+
+    public static int findNumSpot(){ 
+        System.out.println("How many spots would you like on each floor?");
+        Scanner in = new Scanner(System.in);
+        int numSpot = in.nextInt();
+        return numSpot;
+    }
+
+
     public static void main(String[] args){
+        int numFloor = findNumFloor();
+        int numSpot = findNumSpot();
+        //following line is temporary for testing only
+        System.out.println("Floors: "+numFloor+" Spots: "+numSpot);
         new GUI_SS();
     }
 
