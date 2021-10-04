@@ -5,6 +5,7 @@ Data that we are going to store about the customer
 -Customer first and last name 
 -Customer payment type ( cash or credit ) 
 -generated ticket number 
+(3-7 for cilent class for now) 
 - Pricing based on how many hours they want it 
 (1 dollar per one hour, max of 12 hours for just vistors) 
 (18 dollar for lost ticket pricing) 
