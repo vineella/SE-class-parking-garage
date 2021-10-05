@@ -28,7 +28,7 @@ public class GUI_L implements ActionListener {
 
         panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(120, 120, 40, 120));
-        panel.setLayout(new GridLayout(0, 1));
+        panel.setLayout(new GridLayout(0, 5));
 
         spotButtons = new JButton[numSpots];
         for(int i=0; i < numSpots; i++){
