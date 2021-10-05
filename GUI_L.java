@@ -72,5 +72,7 @@ public class GUI_L implements ActionListener {
             panel.revalidate();
             panel.repaint();
         }
+        //this is temporary to test the input GUI
+        new GUI_I();
     }
 }
