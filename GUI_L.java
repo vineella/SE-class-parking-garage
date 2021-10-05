@@ -57,7 +57,6 @@ public class GUI_L implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //which_spot=Integer.parseInt(e.getActionCommand());
         if(e.getActionCommand().equals("r")){
             frame.setVisible(false);
         }else if(isDroppingOff == true){
