@@ -10,107 +10,66 @@ public class GUI_L implements ActionListener {
     private JLabel label;
     public  JFrame frame;
     private JPanel panel;
-    private JButton button_1;
-    private JButton button_2;
-    private JButton button_3;
-    private JButton button_4;
-    private JButton button_5;
     private JButton button_r;
     private static String lv;
     public static boolean isDroppingOff;
+    private static int numSpots;
+    private JButton[] spotButtons;
+    private String whichSpot;
+    private int intWhichSpot;
 
-    //this holds the info of which spot a user has taken
-    private int which_level;
-    private int which_spot;
-
-    public GUI_L(String level, boolean isLeavingCar) {
+    public GUI_L(String level, boolean isLeavingCar, int numSpot) {
         lv=level;
         isDroppingOff=isLeavingCar;
+        numSpots=numSpot;
 
         frame = new JFrame();
-
-        button_1 = new JButton("1");
-        button_2 = new JButton("2");
-        button_3 = new JButton("3");
-        button_4 = new JButton("4");
-        button_5 = new JButton("5");
-        button_r = new JButton("Return to Previous Page");
-
-        button_1.addActionListener(this);
-        button_2.addActionListener(this);
-        button_3.addActionListener(this);
-        button_4.addActionListener(this);
-        button_5.addActionListener(this);
-        button_r.addActionListener(this);
-
         label = new JLabel("Please indicate the space where you parked. :)");
 
         panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(120, 120, 40, 120));
         panel.setLayout(new GridLayout(0, 1));
-        panel.add(button_1);
-        panel.add(button_2);
-        panel.add(button_3);
-        panel.add(button_4);
-        panel.add(button_5);
+
+        spotButtons = new JButton[numSpots];
+        for(int i=0; i < numSpots; i++){
+            int j=i+1;
+            spotButtons[i]=new JButton("Spot "+j);
+            spotButtons[i].setActionCommand(Integer.toString(j));
+            spotButtons[i].addActionListener(this);
+            panel.add(spotButtons[i]);
+        }
+        button_r = new JButton("Return to Previous Page");
+        button_r.setActionCommand("r");
+        button_r.addActionListener(this);
         panel.add(button_r);
         panel.add(label);
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        if(level.equals("g1")){
-            frame.setTitle("You are selecting from: Level G1");
-            which_level=-1;
-        }else if(level.equals("1")){
-            frame.setTitle("You are selecting from: Level 1");
-            which_level=1;
-        }else if(level.equals("2")){
-            frame.setTitle("You are selecting from: Level 2");
-            which_level=2;
-        }else if(level.equals("3")){
-            frame.setTitle("You are selecting from: Level 3");
-            which_level=3;
-        }
+        frame.setTitle("You are selecting from: Level "+lv);
         frame.pack();
         frame.setVisible(true);
     }
 
     public static void main(String[] args){
-        new GUI_L(lv, isDroppingOff);
+        new GUI_L(lv, isDroppingOff, numSpots);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //which_spot=Integer.parseInt(e.getActionCommand());
-        if(e.getActionCommand().equals("Return to Previous Page")){
+        if(e.getActionCommand().equals("r")){
             frame.setVisible(false);
         }else if(isDroppingOff == true){
-            if(e.getActionCommand().equals("1")){
-                button_1.setText("Spot 1 TAKEN");
-            }else if(e.getActionCommand().equals("2")){
-                button_2.setText("Spot 2 TAKEN");
-            }else if(e.getActionCommand().equals("3")){
-                button_3.setText("Spot 3 TAKEN");
-            }else if(e.getActionCommand().equals("4")){
-                button_4.setText("Spot 4 TAKEN");
-            }else if(e.getActionCommand().equals("5")){
-                button_5.setText("Spot 5 TAKEN");
-            }
+            whichSpot=e.getActionCommand();
+            intWhichSpot=Integer.parseInt(whichSpot);
+            spotButtons[intWhichSpot-1].setText("Spot "+intWhichSpot+" TAKEN");
             panel.revalidate();
             panel.repaint();
         }else if(isDroppingOff == false){
-            if(e.getActionCommand().equals("Spot 1 TAKEN")){
-                button_1.setText("1");
-            }else if(e.getActionCommand().equals("Spot 2 TAKEN")){
-                button_2.setText("2");
-            }else if(e.getActionCommand().equals("Spot 3 TAKEN")){
-                button_3.setText("3");
-            }else if(e.getActionCommand().equals("Spot 4 TAKEN")){
-                button_4.setText("4");
-            }else if(e.getActionCommand().equals("Spot 5 TAKEN")){
-                button_5.setText("5");
-            }
+            whichSpot=e.getActionCommand();
+            intWhichSpot=Integer.parseInt(whichSpot);
+            spotButtons[intWhichSpot-1].setText("Spot "+whichSpot);
             panel.revalidate();
             panel.repaint();
         }

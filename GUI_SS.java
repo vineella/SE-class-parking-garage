@@ -15,10 +15,12 @@ public class GUI_SS implements ActionListener{
     private JButton leaving;
     private GUI garage;
     private int gDoesExist;
-    private int numFloor;
-    private int numSpot;
+    private int numFloors;
+    private int numSpots;
 
-    public GUI_SS(){
+    public GUI_SS(int numFloor, int numSpot){
+        numFloors=numFloor;
+        numSpots=numSpot;
 
         frame = new JFrame();
 
@@ -67,7 +69,7 @@ public class GUI_SS implements ActionListener{
         int numSpot = findNumSpot();
         //following line is temporary for testing only
         System.out.println("Floors: "+numFloor+" Spots: "+numSpot);
-        new GUI_SS();
+        new GUI_SS(numFloor, numSpot);
     }
 
     @Override
@@ -86,7 +88,7 @@ public class GUI_SS implements ActionListener{
         if(gDoesExist==1){
             garage.frame.setVisible(true);
         }else{
-            garage = new GUI(IDO);
+            garage = new GUI(IDO, numFloors, numSpots);
             gDoesExist = 1;
         }
     }
