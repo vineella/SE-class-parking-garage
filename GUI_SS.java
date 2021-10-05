@@ -67,15 +67,13 @@ public class GUI_SS implements ActionListener{
     public static void main(String[] args){
         int numFloor = findNumFloor();
         int numSpot = findNumSpot();
-        //following line is temporary for testing only
-        System.out.println("Floors: "+numFloor+" Spots: "+numSpot);
         new GUI_SS(numFloor, numSpot);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //the value of IDO doesn't matter in the line below
-        //this is just to initialize it in a form the final else
+        //is just to initialize it in a form the final else
         //statement will accept.
         boolean IDO =true;
         if(e.getActionCommand().equals("c")){

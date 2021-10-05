@@ -65,14 +65,15 @@ public class GUI_L implements ActionListener {
             spotButtons[intWhichSpot-1].setText("Spot "+intWhichSpot+" TAKEN");
             panel.revalidate();
             panel.repaint();
+            new GUI_I();
         }else if(isDroppingOff == false){
             whichSpot=e.getActionCommand();
             intWhichSpot=Integer.parseInt(whichSpot);
             spotButtons[intWhichSpot-1].setText("Spot "+whichSpot);
             panel.revalidate();
             panel.repaint();
+            new GUI_P();
         }
-        //this is temporary to test the input GUI
-        new GUI_I();
+        frame.setVisible(false);
     }
 }

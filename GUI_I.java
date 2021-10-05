@@ -51,6 +51,9 @@ public class GUI_I implements ActionListener{
         //following two lines are temporary for testing purposes
         String input = firstNameInput.getText()+" "+lastNameInput.getText();
         System.out.println(input);
+        //here we bring up the frame that says you clocked in at
+        //whatever time, we'll see you later.
+        frame.setVisible(false);
     }
     
 }
