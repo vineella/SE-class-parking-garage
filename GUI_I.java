@@ -15,6 +15,8 @@ public class GUI_I implements ActionListener{
     private JTextField firstNameInput;
     private JLabel lastName;
     private JTextField lastNameInput;
+    private JLabel cardNumber;
+    private JTextField cardNumberInput;
 
     public GUI_I(){
         done = new JButton("Click here when finished.");
@@ -24,6 +26,8 @@ public class GUI_I implements ActionListener{
         firstNameInput = new JTextField("");
         lastName = new JLabel("Please input your last name.");
         lastNameInput = new JTextField("");
+        cardNumber = new JLabel("Please input your credit card number");
+        cardNumberInput = new JTextField("");
 
         frame = new JFrame();
 
@@ -35,6 +39,8 @@ public class GUI_I implements ActionListener{
         panel.add(firstNameInput);
         panel.add(lastName);
         panel.add(lastNameInput);
+        panel.add(cardNumber);
+        panel.add(cardNumberInput);
         panel.add(done);
 
         frame.add(panel, BorderLayout.CENTER);
@@ -49,7 +55,7 @@ public class GUI_I implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         //following two lines are temporary for testing purposes
-        String input = firstNameInput.getText()+" "+lastNameInput.getText();
+        String input = firstNameInput.getText()+" "+lastNameInput.getText()+" "+cardNumberInput.getText();
         System.out.println(input);
         //here we bring up the frame that says you clocked in at
         //whatever time, we'll see you later.
