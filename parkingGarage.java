@@ -49,7 +49,7 @@ class parkingGarage {
     public String getAllSpots(){
         for (int i=0; i<= floors; i++){
             for (int j = 0; j <= spots; j++){
-                if (spots == 0) {
+                if (garage[i][j] == 0) {
                     System.out.println("This spot is avaiable");
                 }
                 else {
