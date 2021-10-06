@@ -1,0 +1,49 @@
+import java.util.Scanner;
+import java.sql;
+import java.math;
+//super rough draft//
+//import are for database connection//
+//will rewrite/review it, but this is likely how it will be written or I might change it//
+
+public class ClientClass {
+    public static void main(String[] args) {
+        int firstN;
+        int LastN; 
+        int payment; 
+        int model; 
+        int license; 
+        int ticket; 
+        
+        public Client (int firstN, int LastN, int payment){
+            this.firstN = firstN;
+            this.LastN = LastN;
+            this.payment = payment;
+        }
+        public CilentCar (int model, int license, int ticket){
+            this.model = model;
+            this.license = license; 
+            this.ticket = ticket;
+        }
+        public integar getfirstN(){
+            return firstN;
+        }
+        public integar getLastN(){
+            return lastN;
+        }
+        public integar getpayment(){
+            return payment;
+        }
+        public integar getmodel(){
+            return model;
+        }
+        public integar getLicense(){
+            return license;
+        }
+        public integar getticket(){
+            return ticket;
+        }
+        public toString(){
+            system.out.println("name = " + this.firstN + this.lastN + " payment = " + this.payment + " car model = " + this.model + "car license = " + this.license + "client ticket = " + this.ticket);
+        }
+    }
+}
