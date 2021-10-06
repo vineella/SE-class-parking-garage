@@ -22,9 +22,6 @@ class parkingGarage {
         return spots;
     }
 
-    
-
-
 
     //Method to print info in specific way
     public String toString() {
@@ -43,8 +40,6 @@ class parkingGarage {
                 }       
     }
         
-
-
     //method that gets all the spots
     public String getAllSpots(){
         for (int i=0; i<= floors; i++){
@@ -52,9 +47,8 @@ class parkingGarage {
                 if (garage[i][j] == 0) {
                     System.out.println("This spot is avaiable");
                 }
-                else {
-                    System.out.println("This is spot is not available");
-                }
+                
+                
             }
         }
     }
