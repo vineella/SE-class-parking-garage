@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class GUI_SS implements ActionListener{
     private JLabel label;
-    private JFrame frame;
+    public static JFrame frame;
     private JPanel panel;
     private JButton coming;
     private JButton leaving;
@@ -36,7 +36,7 @@ public class GUI_SS implements ActionListener{
         label = new JLabel("Please select an option below.");
 
         panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(120, 120, 40, 120));
+        panel.setBorder(BorderFactory.createEmptyBorder(200, 200, 60, 200));
         panel.setLayout(new GridLayout(0, 1));
         panel.add(label);
         panel.add(coming);
