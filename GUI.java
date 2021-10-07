@@ -20,13 +20,16 @@ public class GUI implements ActionListener{
     private String whichFloor;
     private int intWhichFloor;
     private GUI_L[] floorGUIs;
+    private static parkingGarage parkingGarage;
 
-    public GUI(boolean isLeavingCar, int numFloor, int numSpot) {
+    public GUI(boolean isLeavingCar, int numFloor, int numSpot, parkingGarage garage) {
         isDroppingOff=isLeavingCar;
         numFloors = numFloor;
         numSpots = numSpot;
         floorExists = new boolean[numFloors];
         floorGUIs = new GUI_L[numFloors];
+        parkingGarage = garage;
+
 
         frame = new JFrame();
 
@@ -59,7 +62,7 @@ public class GUI implements ActionListener{
 
 
     public static void main(String[] args){
-        new GUI(isDroppingOff, numFloors, numSpots);
+        new GUI(isDroppingOff, numFloors, numSpots, parkingGarage);
     }
     
     @Override
@@ -73,8 +76,7 @@ public class GUI implements ActionListener{
                 floorGUIs[intWhichFloor-1].frame.setVisible(true);
                 floorGUIs[intWhichFloor-1].isDroppingOff=isDroppingOff;
             }else{
-                //will have to change this to match the updated form
-                floorGUIs[intWhichFloor-1]= new GUI_L(whichFloor, isDroppingOff, numSpots);
+                floorGUIs[intWhichFloor-1]= new GUI_L(whichFloor, isDroppingOff, intWhichFloor, numSpots, parkingGarage);
                 floorExists[intWhichFloor-1]=true;
             }
         }

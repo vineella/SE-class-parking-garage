@@ -17,10 +17,12 @@ public class GUI_SS implements ActionListener{
     private int gDoesExist;
     private int numFloors;
     private int numSpots;
+    private parkingGarage parkingGarage;
 
     public GUI_SS(int numFloor, int numSpot){
         numFloors=numFloor;
         numSpots=numSpot;
+        parkingGarage = new parkingGarage(numFloors, numSpots);
 
         frame = new JFrame();
 
@@ -72,8 +74,8 @@ public class GUI_SS implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //the value of IDO doesn't matter in the line below
-        //is just to initialize it in a form the final else
+        //the value of IDO doesn't matter in the line below.
+        //It is just to initialize it in a form the final else
         //statement will accept.
         boolean IDO =true;
         if(e.getActionCommand().equals("c")){
@@ -86,7 +88,7 @@ public class GUI_SS implements ActionListener{
         if(gDoesExist==1){
             garage.frame.setVisible(true);
         }else{
-            garage = new GUI(IDO, numFloors, numSpots);
+            garage = new GUI(IDO, numFloors, numSpots, parkingGarage);
             gDoesExist = 1;
         }
     }

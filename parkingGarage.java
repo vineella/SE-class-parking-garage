@@ -1,16 +1,15 @@
-import java.util.Scanner;
-import java.util.ArrayList;
 class parkingGarage {
-    int spots, floors, garage[][];
+    int spots, floors;
+    int[][] garage;
     int userFloor, userSpots;
 
     //constructor declaring class
     public parkingGarage(int floors, int spots){
         this.floors = floors;
         this.spots = spots;
-        int garage[][] = new int[floors][spots]; //garage array
-
+        garage = new int[floors][spots]; //garage array
     }
+
 
     //method to get floor, 
     public int getFloors(){
@@ -22,6 +21,16 @@ class parkingGarage {
         return spots;
     }
 
+    //method to get the garage array
+    public int[][] getArray(){
+        return garage;
+    }
+
+    //method to fill a specific spot
+    public void fillSpot(int userFloor, int userSpot){
+        garage[userFloor][userSpot]=1;
+    }
+
 
     //Method to print info in specific way
     public String toString() {
@@ -29,26 +38,24 @@ class parkingGarage {
     } 
 
     //create a code that searches for a specific spot
-    public String available(int[][] garage) {
-        //for (int i = 0; i < floor; i++){
-            //for (int j = 0; i < spots; j++){ //may not need a nested for loop could just do a boolean
-                if (garage[userFloor][userSpots] == 0){            //can also just do if(input[userFloor][userSpots] == 0)
-                    System.out.print("This spot is available");
+    public boolean isAvailable(int[][] garage, int userFloor, int userSpot) {
+        boolean availability;
+                if(garage[userFloor][userSpot] == 0){           
+                    availability=true;
                 }
-                else {
-                    System.out.println("This spot is not avaiable");
+                else{
+                    availability=false;
                 }       
+        return availability;
     }
         
     //method that gets all the spots
-    public String getAllSpots(){
+    public void getAllSpots(){
         for (int i=0; i<= floors; i++){
             for (int j = 0; j <= spots; j++){
                 if (garage[i][j] == 0) {
                     System.out.println("This spot is avaiable");
                 }
-                
-                
             }
         }
     }

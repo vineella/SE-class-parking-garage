@@ -13,15 +13,21 @@ public class GUI_L implements ActionListener {
     private JButton button_r;
     private static String lv;
     public static boolean isDroppingOff;
+    private static int intWhichFloor;
     private static int numSpots;
     private JButton[] spotButtons;
     private String whichSpot;
     private int intWhichSpot;
+    private static parkingGarage parkingGarage;
+    private int[][] garageArray;
 
-    public GUI_L(String level, boolean isLeavingCar, int numSpot) {
+    public GUI_L(String level, boolean isLeavingCar,int floor, int numSpot, parkingGarage garage) {
         lv=level;
         isDroppingOff=isLeavingCar;
+        intWhichFloor=floor;
         numSpots=numSpot;
+        parkingGarage = garage;
+        garageArray = parkingGarage.getArray();
 
         frame = new JFrame();
         label = new JLabel("Please indicate the space where you parked. :)");
@@ -52,7 +58,7 @@ public class GUI_L implements ActionListener {
     }
 
     public static void main(String[] args){
-        new GUI_L(lv, isDroppingOff, numSpots);
+        new GUI_L(lv, isDroppingOff, intWhichFloor, numSpots, parkingGarage);
     }
 
     @Override
@@ -60,20 +66,31 @@ public class GUI_L implements ActionListener {
         if(e.getActionCommand().equals("r")){
             frame.setVisible(false);
         }else if(isDroppingOff == true){
+            //here we only want this to happen if we check the garage 
+            //class and the spot is actually empty
             whichSpot=e.getActionCommand();
             intWhichSpot=Integer.parseInt(whichSpot);
-            spotButtons[intWhichSpot-1].setText("Spot "+intWhichSpot+" TAKEN");
-            panel.revalidate();
-            panel.repaint();
-            new GUI_I();
+            if(parkingGarage.isAvailable(garageArray, intWhichFloor-1,intWhichSpot-1)==true){
+                garageArray[intWhichFloor-1][intWhichSpot-1]=1;
+                spotButtons[intWhichSpot-1].setText("Spot "+intWhichSpot+" TAKEN");
+                panel.revalidate();
+                panel.repaint();
+                new GUI_I();
+                frame.setVisible(false);
+            }
         }else if(isDroppingOff == false){
+            //here we only want this to happen if we check the garage 
+            //class and the spot is actually taken
             whichSpot=e.getActionCommand();
             intWhichSpot=Integer.parseInt(whichSpot);
+            if(parkingGarage.isAvailable(garageArray, intWhichFloor-1,intWhichSpot-1)==false){
+            garageArray[intWhichFloor-1][intWhichSpot-1]=0;
             spotButtons[intWhichSpot-1].setText("Spot "+whichSpot);
             panel.revalidate();
             panel.repaint();
             new GUI_P();
+            frame.setVisible(false);
+            }
         }
-        frame.setVisible(false);
     }
 }
