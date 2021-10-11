@@ -1,3 +1,5 @@
+import java.util.Scanner;
+import java.util.ArrayList;
 class parkingGarage {
     int spots, floors;
     int[][] garage;
@@ -40,10 +42,10 @@ class parkingGarage {
     //create a code that searches for a specific spot
     public boolean isAvailable(int[][] garage, int userFloor, int userSpot) {
         boolean availability;
-                if(garage[userFloor][userSpot] == 0){           
+                if (garage[userFloor][userSpot] == 0){           
                     availability=true;
                 }
-                else{
+                else {
                     availability=false;
                 }       
         return availability;
@@ -54,7 +56,7 @@ class parkingGarage {
         for (int i=0; i<= floors; i++){
             for (int j = 0; j <= spots; j++){
                 if (garage[i][j] == 0) {
-                    System.out.println("This spot is avaiable");
+                    System.out.println("This spot is avaiable:" + "Floor: " + this.getFloors() + "Spot: " + this.getSpots());
                 }
             }
         }
