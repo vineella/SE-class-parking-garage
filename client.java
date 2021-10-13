@@ -1,26 +1,23 @@
 public class client {
     private String firstN;
     private String lastN;
-    private int cardNum;
-    private int phoneNum; 
-    private int timeIn;
+    private String cardNum;
+    private String phoneNum; 
+    //private int timeIn; //we can put this in when we figure out what we're doing for the time
     private boolean isMember;
+    private int floor;
+    private int spot;
         
-    public client(String firstN, String lastN, int cardNum, int phoneNum, int timeIn, boolean isMember){
+    public client(String firstN, String lastN, String cardNum, String phoneNum, /*int timeIn,*/ boolean isMember, int floor, int spot){
         this.firstN = firstN;
         this.lastN = lastN;
         this.cardNum = cardNum;
         this.phoneNum = phoneNum;
-        this.timeIn = timeIn;
+        //this.timeIn = timeIn;
         this.isMember = isMember;
+        this.floor = floor;
+        this.spot = spot;
     }
-        
-    //this should be a different class
-    /*public CilentCar (int model, int license, int ticket){
-        this.model = model;
-        this.license = license; 
-        this.ticket = ticket;
-    }*/
     
     public String getfirstN(){
         return firstN;
@@ -28,19 +25,27 @@ public class client {
     public String getLastN(){
         return lastN;
     }
-    public int getcardNum(){
+    public String getcardNum(){
         return cardNum;
     }
-    public int getphoneNum(){
+    public String getphoneNum(){
         return phoneNum;
     }
-    public int gettimeIn(){
+    /*public int gettimeIn(){
         return timeIn;
-    }
+    }*/
     public boolean getisMember(){
         return isMember;
     }
+    public int getFloor(){
+        return floor;
+    }
+    public int getSpot(){
+        return spot;
+    }
     public String toString(){
-        return ("name = " + this.firstN + this.lastN + "card number =" + this.cardNum + "phone number =" + this.phoneNum + " time in = " + this.timeIn + "is member = " + this.isMember);
+        return ("name = " + this.firstN + this.lastN + " card number =" + this.cardNum + 
+        " phone number =" + this.phoneNum + /*" time in = " + this.timeIn +*/ 
+        " is member = " + this.isMember + " floor: " + floor + " spot: " + spot);
     }
 }

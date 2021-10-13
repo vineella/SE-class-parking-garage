@@ -75,7 +75,7 @@ public class GUI_L implements ActionListener {
                 spotButtons[intWhichSpot-1].setText("Spot "+intWhichSpot+" TAKEN");
                 panel.revalidate();
                 panel.repaint();
-                new GUI_I();
+                new GUI_I(intWhichFloor, intWhichSpot);
                 frame.setVisible(false);
             }
         }else if(isDroppingOff == false){

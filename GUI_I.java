@@ -17,8 +17,19 @@ public class GUI_I implements ActionListener{
     private JTextField lastNameInput;
     private JLabel cardNumber;
     private JTextField cardNumberInput;
+    private JLabel phoneNumber;
+    private JTextField phoneNumberInput;
+    private JLabel isMember;
+    private JButton isMemberInput;
+    private boolean boolIsMember;
+    private client Client;
+    private int whichFloor;
+    private int whichSpot;
 
-    public GUI_I(){
+
+    public GUI_I(int whichFloor, int whichSpot){
+        this.whichFloor=whichFloor;
+        this.whichSpot=whichSpot;
         done = new JButton("Click here when finished.");
         done.setActionCommand("d");
         done.addActionListener(this);
@@ -28,6 +39,9 @@ public class GUI_I implements ActionListener{
         lastNameInput = new JTextField("");
         cardNumber = new JLabel("Please input your credit card number");
         cardNumberInput = new JTextField("");
+        phoneNumber = new JLabel("Please input your phone number");
+        phoneNumberInput = new JTextField("");
+
 
         frame = new JFrame();
 
@@ -41,6 +55,18 @@ public class GUI_I implements ActionListener{
         panel.add(lastNameInput);
         panel.add(cardNumber);
         panel.add(cardNumberInput);
+        panel.add(phoneNumber);
+        panel.add(phoneNumberInput);
+        if(boolIsMember==false){
+            isMember = new JLabel("Would you like to become a member?" +
+            "(This adds a $20 charge to your account, but gives you 25%"
+            + "off per hour you stay here for the next 30 days)");
+            isMemberInput = new JButton("Click here to become a member!");
+            isMemberInput.setActionCommand("m");
+            isMemberInput.addActionListener(this);
+            panel.add(isMember);
+            panel.add(isMemberInput);
+        }
         panel.add(done);
 
         frame.add(panel, BorderLayout.CENTER);
@@ -54,12 +80,19 @@ public class GUI_I implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //following two lines are temporary for testing purposes
-        String input = firstNameInput.getText()+" "+lastNameInput.getText()+" "+cardNumberInput.getText();
-        System.out.println(input);
-        //here we bring up the frame that says you clocked in at
-        //whatever time, we'll see you later.
-        frame.setVisible(false);
+        if(e.getActionCommand().equals("m")){
+            isMemberInput.setText("You are now a member! :)");
+            isMemberInput.setActionCommand("n");
+            panel.revalidate();
+            panel.repaint();
+            boolIsMember=true;
+        }else if(e.getActionCommand().equals("n")==false){
+            Client = new client(firstNameInput.getText(), lastNameInput.getText(), cardNumberInput.getText(), phoneNumberInput.getText(), boolIsMember, whichFloor, whichSpot);
+            System.out.println(Client.toString()); //this line is temporary for testing
+            //here we bring up the frame that says you clocked in at
+            //whatever time, we'll see you later.
+            frame.setVisible(false);
+        }
     }
     
 }
