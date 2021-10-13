@@ -1,5 +1,3 @@
-import java.util.Scanner;
-import java.util.ArrayList;
 class parkingGarage {
     int spots, floors;
     int[][] garage;
