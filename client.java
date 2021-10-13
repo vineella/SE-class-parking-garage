@@ -1,15 +1,18 @@
 public class client {
-    int firstN;
-    int lastN; 
-    int payment; 
-    int model; 
-    int license; 
-    int ticket; 
+    private String firstN;
+    private String lastN;
+    private int cardNum;
+    private int phoneNum; 
+    private int timeIn;
+    private boolean isMember;
         
-    public client(int firstN, int lastN, int payment){
+    public client(String firstN, String lastN, int cardNum, int phoneNum, int timeIn, boolean isMember){
         this.firstN = firstN;
         this.lastN = lastN;
-        this.payment = payment;
+        this.cardNum = cardNum;
+        this.phoneNum = phoneNum;
+        this.timeIn = timeIn;
+        this.isMember = isMember;
     }
         
     //this should be a different class
@@ -19,25 +22,25 @@ public class client {
         this.ticket = ticket;
     }*/
     
-    public int getfirstN(){
+    public String getfirstN(){
         return firstN;
     }
-    public int getLastN(){
+    public String getLastN(){
         return lastN;
     }
-    public int getpayment(){
-        return payment;
+    public int getcardNum(){
+        return cardNum;
     }
-    public int getmodel(){
-        return model;
+    public int getphoneNum(){
+        return phoneNum;
     }
-    public int getLicense(){
-        return license;
+    public int gettimeIn(){
+        return timeIn;
     }
-    public int getticket(){
-        return ticket;
+    public boolean getisMember(){
+        return isMember;
     }
     public String toString(){
-        return ("name = " + this.firstN + this.lastN + " payment = " + this.payment + " car model = " + this.model + "car license = " + this.license + "client ticket = " + this.ticket);
+        return ("name = " + this.firstN + this.lastN + "card number =" + this.cardNum + "phone number =" + this.phoneNum + " time in = " + this.timeIn + "is member = " + this.isMember);
     }
 }
