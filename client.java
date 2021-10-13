@@ -5,7 +5,7 @@ import java.math;
 //import are for database connection//
 //will rewrite/review it, but this is likely how it will be written or I might change it//
 
-public class ClientClass {
+public class client {
     public static void main(String[] args) {
         int firstN;
         int LastN; 
@@ -14,32 +14,33 @@ public class ClientClass {
         int license; 
         int ticket; 
         
-        public Client (int firstN, int LastN, int payment){
+        public client(int firstN, int LastN, int payment){
             this.firstN = firstN;
             this.LastN = LastN;
             this.payment = payment;
         }
+        
         public CilentCar (int model, int license, int ticket){
             this.model = model;
             this.license = license; 
             this.ticket = ticket;
         }
-        public integar getfirstN(){
+        public int getfirstN(){
             return firstN;
         }
-        public integar getLastN(){
+        public int getLastN(){
             return lastN;
         }
-        public integar getpayment(){
+        public int getpayment(){
             return payment;
         }
-        public integar getmodel(){
+        public int getmodel(){
             return model;
         }
-        public integar getLicense(){
+        public int getLicense(){
             return license;
         }
-        public integar getticket(){
+        public int getticket(){
             return ticket;
         }
         public toString(){
