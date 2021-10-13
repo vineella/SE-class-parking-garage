@@ -9,7 +9,7 @@ class parkingGarage {
     public parkingGarage(int floors, int spots){
         this.floors = floors;
         this.spots = spots;
-        garage = new int[floors][spots]; //garage array
+        this.garage = new int[floors][spots]; //garage array
     }
 
 
