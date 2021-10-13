@@ -44,7 +44,7 @@ public class client {
         return spot;
     }
     public String toString(){
-        return ("name = " + this.firstN + this.lastN + " card number =" + this.cardNum + 
+        return ("name = " + this.firstN + " " + this.lastN + " card number =" + this.cardNum + 
         " phone number =" + this.phoneNum + /*" time in = " + this.timeIn +*/ 
         " is member = " + this.isMember + " floor: " + floor + " spot: " + spot);
     }
