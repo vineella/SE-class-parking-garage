@@ -1,0 +1,31 @@
+Membership = tier 1(starting one) , tier 2, tier 3, tier 4 ( highest) 
+car plate: All is 6 digits.
+This is the basic list we need for now. As for ticket number, pricing, how much they need for time will come later. 
+Tier 1: no membership fee - no perks
+tier 2: $50 per month - 5% discount 
+tier 3: $100 per month - 10% discount + unlimited hours not locked to 12 per use
+Tier 4: $200 per month  - 20% discount + unlimited hours not locked to 12 + can use heavily discounted  month packages. 
+
+ name: Jack leur 
+Car plate:  XMPLPL8 
+car model: Honda 
+payment: Cash 
+Tier: Tier 1 
+
+name: Lance Smith 
+car plate:  NMPLPL9
+car model: Acura 
+payment: Cash 
+Tier; Tier 2 
+
+name: William Jones 
+car plate: NYMP10
+car model: Cadillac 
+payment: credit 
+Tier: Tier 3
+
+Name: Willow Smith 
+car plate: NHOI01
+car model: Audi 
+payment: Credit 
+Tier: Tier 4 
