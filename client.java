@@ -5,6 +5,8 @@ public class client {
     private String phoneNum; 
     private String dateIn;
     private String timeIn;
+    private String dateOut;
+    private String timeOut;
     private boolean isMember;
     private int floor;
     private int spot;
@@ -39,6 +41,18 @@ public class client {
     public String gettimeIn(){
         return timeIn;
     }
+    public void setdateOut(String newDateOut){
+        dateOut=newDateOut;
+    }
+    public String getdateOut(){
+        return dateOut;
+    }
+    public void settimeOut(String newTimeOut){
+        timeOut=newTimeOut;
+    }
+    public String gettimeOut(){
+        return timeOut;
+    }
     public boolean getisMember(){
         return isMember;
     }
@@ -51,6 +65,7 @@ public class client {
     public String toString(){
         return ("name = " + this.firstN + " " + this.lastN + " card number =" + this.cardNum + 
         " phone number =" + this.phoneNum + " date in = " + this.dateIn + " time in = " + this.timeIn + 
-        " is member = " + this.isMember + " floor: " + floor + " spot: " + spot);
+        " date out = " + this.dateOut + " time out = " + this.timeOut + " is member = " + this.isMember +
+        " floor: " + floor + " spot: " + spot);
     }
 }

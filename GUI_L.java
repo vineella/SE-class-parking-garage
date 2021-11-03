@@ -88,7 +88,8 @@ public class GUI_L implements ActionListener {
             spotButtons[intWhichSpot-1].setText("Spot "+whichSpot);
             panel.revalidate();
             panel.repaint();
-            new GUI_P();
+
+            new GUI_TO();
             frame.setVisible(false);
             }
         }
