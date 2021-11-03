@@ -11,13 +11,13 @@ public class GUI_I implements ActionListener{
     public  JFrame frame;
     private JPanel panel;
     private JButton done;
-    private JLabel firstName;
+    private JLabel firstNameLabel;
     private JTextField firstNameInput;
-    private JLabel lastName;
+    private JLabel lastNameLabel;
     private JTextField lastNameInput;
-    private JLabel cardNumber;
+    private JLabel cardNumberLabel;
     private JTextField cardNumberInput;
-    private JLabel phoneNumber;
+    private JLabel phoneNumberLabel;
     private JTextField phoneNumberInput;
     private JLabel isMember;
     private JButton isMemberInput;
@@ -25,6 +25,10 @@ public class GUI_I implements ActionListener{
     private client Client;
     private int whichFloor;
     private int whichSpot;
+    private String firstName;
+    private String lastName;
+    private String cardNumber;
+    private String phoneNumber;
 
 
     public GUI_I(int whichFloor, int whichSpot){
@@ -33,13 +37,13 @@ public class GUI_I implements ActionListener{
         done = new JButton("Click here when finished.");
         done.setActionCommand("d");
         done.addActionListener(this);
-        firstName = new JLabel("Please input your first name.");
+        firstNameLabel = new JLabel("Please input your first name.");
         firstNameInput = new JTextField("");
-        lastName = new JLabel("Please input your last name.");
+        lastNameLabel = new JLabel("Please input your last name.");
         lastNameInput = new JTextField("");
-        cardNumber = new JLabel("Please input your credit card number");
+        cardNumberLabel = new JLabel("Please input your credit card number");
         cardNumberInput = new JTextField("");
-        phoneNumber = new JLabel("Please input your phone number");
+        phoneNumberLabel = new JLabel("Please input your phone number");
         phoneNumberInput = new JTextField("");
 
 
@@ -49,13 +53,13 @@ public class GUI_I implements ActionListener{
         panel.setBorder(BorderFactory.createEmptyBorder(210, 210, 65, 210));
         panel.setLayout(new GridLayout(0, 1));
 
-        panel.add(firstName);
+        panel.add(firstNameLabel);
         panel.add(firstNameInput);
-        panel.add(lastName);
+        panel.add(lastNameLabel);
         panel.add(lastNameInput);
-        panel.add(cardNumber);
+        panel.add(cardNumberLabel);
         panel.add(cardNumberInput);
-        panel.add(phoneNumber);
+        panel.add(phoneNumberLabel);
         panel.add(phoneNumberInput);
         if(boolIsMember==false){
             isMember = new JLabel("Would you like to become a member?" +
@@ -74,6 +78,11 @@ public class GUI_I implements ActionListener{
         frame.setTitle("Please provide the information below:");
         frame.pack();
         frame.setVisible(true);
+
+        firstName = firstNameInput.getText();
+        lastName = lastNameInput.getText();
+        cardNumber = cardNumberInput.getText();
+        phoneNumber = phoneNumberInput.getText();
     }
     
 
@@ -87,7 +96,7 @@ public class GUI_I implements ActionListener{
             panel.repaint();
             boolIsMember=true;
         }else if(e.getActionCommand().equals("n")==false){
-            Client = new client(firstNameInput.getText(), lastNameInput.getText(), cardNumberInput.getText(), phoneNumberInput.getText(), boolIsMember, whichFloor, whichSpot);
+            Client = new client(firstName, lastName, cardNumber, phoneNumber, boolIsMember, whichFloor, whichSpot);
             System.out.println(Client.toString()); //this line is temporary for testing
             //here we bring up the frame that says you clocked in at
             //whatever time, we'll see you later.
