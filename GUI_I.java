@@ -19,6 +19,10 @@ public class GUI_I implements ActionListener{
     private JTextField cardNumberInput;
     private JLabel phoneNumberLabel;
     private JTextField phoneNumberInput;
+    private JLabel dateInLabel;
+    private JTextField dateInInput;
+    private JLabel timeInLabel;
+    private JTextField timeInInput;
     private JLabel isMember;
     private JButton isMemberInput;
     private boolean boolIsMember;
@@ -29,6 +33,8 @@ public class GUI_I implements ActionListener{
     private String lastName;
     private String cardNumber;
     private String phoneNumber;
+    private String dateIn;
+    private String timeIn;
 
 
     public GUI_I(int whichFloor, int whichSpot){
@@ -45,6 +51,11 @@ public class GUI_I implements ActionListener{
         cardNumberInput = new JTextField("");
         phoneNumberLabel = new JLabel("Please input your phone number");
         phoneNumberInput = new JTextField("");
+        dateInLabel = new JLabel("Please Indicate Today's Date (MM/DD/YYYY):");
+        dateInInput = new JTextField("");
+        timeInLabel = new JLabel("Please Indicate the Current Time Using the Military"+
+        "/24-Hour System(HH:MM)");
+        timeInInput = new JTextField("");
 
 
         frame = new JFrame();
@@ -61,6 +72,11 @@ public class GUI_I implements ActionListener{
         panel.add(cardNumberInput);
         panel.add(phoneNumberLabel);
         panel.add(phoneNumberInput);
+        panel.add(dateInLabel);
+        panel.add(dateInInput);
+        panel.add(timeInLabel);
+        panel.add(timeInInput);
+
         if(boolIsMember==false){
             isMember = new JLabel("Would you like to become a member?" +
             "(This adds a $20 charge to your account, but gives you 25%"
@@ -78,11 +94,6 @@ public class GUI_I implements ActionListener{
         frame.setTitle("Please provide the information below:");
         frame.pack();
         frame.setVisible(true);
-
-        firstName = firstNameInput.getText();
-        lastName = lastNameInput.getText();
-        cardNumber = cardNumberInput.getText();
-        phoneNumber = phoneNumberInput.getText();
     }
     
 
@@ -96,12 +107,17 @@ public class GUI_I implements ActionListener{
             panel.repaint();
             boolIsMember=true;
         }else if(e.getActionCommand().equals("n")==false){
-            Client = new client(firstName, lastName, cardNumber, phoneNumber, boolIsMember, whichFloor, whichSpot);
+            firstName = firstNameInput.getText();
+            lastName = lastNameInput.getText();
+            cardNumber = cardNumberInput.getText();
+            phoneNumber = phoneNumberInput.getText();
+            dateIn = dateInInput.getText();
+            timeIn = timeInInput.getText();
+            Client = new client(firstName, lastName, cardNumber, phoneNumber, dateIn, timeIn, boolIsMember, whichFloor, whichSpot);
             System.out.println(Client.toString()); //this line is temporary for testing
             //here we bring up the frame that says you clocked in at
             //whatever time, we'll see you later.
             frame.setVisible(false);
         }
     }
-    
 }
