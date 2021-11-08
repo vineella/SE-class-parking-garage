@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
+import java.time.format.SimpleDateFormat;
 public class client {
     private String firstN;
     private String lastN;
@@ -67,5 +70,44 @@ public class client {
         " phone number =" + this.phoneNum + " date in = " + this.dateIn + " time in = " + this.timeIn + 
         " date out = " + this.dateOut + " time out = " + this.timeOut + " is member = " + this.isMember +
         " floor: " + floor + " spot: " + spot);
+    }
+
+    public static double getPrice(String timeIn, String timeOut, String dateIn, String dateOut, boolean lostTicket, boolean isMember){
+        double price = 0; /*
+        Scanner input1 = new Scanner(System.in);
+        System.out.print("Please enter what time you have entered the parking garage in millitary time as such HH:MM");
+        String time1 = input1.nextLine();
+        
+        Scanner input2 = new Scanner(System.in);
+        System.out.print("Please enter what time you have entered the parking garage in millitary time as such HH:MM");
+        String time2 = input2.nextLine(); */
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:MM");
+        Date date1 = format.parse(timeIn);
+        Date date2 = format.parse(timeOut);
+        int hours = date2.getTime() - date1.getTime();
+        
+        SimpleDateFormat formatD = new SimpleDateFormat("MM/DD/YYYY");
+        Date dayE = formatD.parse(dateIn);
+        Date dayL = formatD.parse(dateOut);
+        int days = dayL.getDays() - dayE.getDays();
+        
+        int duration = hours + (days * 24);
+
+        price = duration;
+
+        if(duration>=12) {
+			price = 12;
+		}
+		
+		if(lostTicket == true) {
+			price = 18;
+		}
+		
+		if(isMember == true) {
+			price = price * 0.75;
+		}
+		
+		return price;
     }
 }
