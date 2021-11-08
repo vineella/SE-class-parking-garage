@@ -6,6 +6,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.ParseException;
 
 public class GUI_TO implements ActionListener {
     public  JFrame frame;
@@ -18,6 +19,7 @@ public class GUI_TO implements ActionListener {
     private String dateOut;
     private String timeOut;
     private client Client;
+    private double amountCharged;
 
     public GUI_TO(){
         done = new JButton("Click here when finished.");
@@ -61,6 +63,12 @@ public class GUI_TO implements ActionListener {
             Client.settimeOut(timeOut);
             System.out.println(Client.toString()); //this line is temporary for testing
             frame.setVisible(false);
-            new GUI_P();
+            try {
+                amountCharged=Client.getPrice();
+            } catch (ParseException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+            new GUI_P(amountCharged);
     }
 }

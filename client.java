@@ -1,6 +1,6 @@
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Scanner;
-import java.time.format.SimpleDateFormat;
+import java.util.Date;
 public class client {
     private String firstN;
     private String lastN;
@@ -13,6 +13,8 @@ public class client {
     private boolean isMember;
     private int floor;
     private int spot;
+    private final int millisecondsPerHour=3600000;
+    private final int hourlyRate = 1;
         
     public client(String firstN, String lastN, String cardNum, String phoneNum, String dateIn, String timeIn, boolean isMember, int floor, int spot){
         this.firstN = firstN;
@@ -72,42 +74,26 @@ public class client {
         " floor: " + floor + " spot: " + spot);
     }
 
-    public static double getPrice(String timeIn, String timeOut, String dateIn, String dateOut, boolean lostTicket, boolean isMember){
-        double price = 0; /*
-        Scanner input1 = new Scanner(System.in);
-        System.out.print("Please enter what time you have entered the parking garage in millitary time as such HH:MM");
-        String time1 = input1.nextLine();
-        
-        Scanner input2 = new Scanner(System.in);
-        System.out.print("Please enter what time you have entered the parking garage in millitary time as such HH:MM");
-        String time2 = input2.nextLine(); */
+    public double getPrice() throws ParseException{
+        double price;
 
-        SimpleDateFormat format = new SimpleDateFormat("HH:MM");
-        Date date1 = format.parse(timeIn);
-        Date date2 = format.parse(timeOut);
-        int hours = date2.getTime() - date1.getTime();
-        
-        SimpleDateFormat formatD = new SimpleDateFormat("MM/DD/YYYY");
-        Date dayE = formatD.parse(dateIn);
-        Date dayL = formatD.parse(dateOut);
-        int days = dayL.getDays() - dayE.getDays();
-        
-        int duration = hours + (days * 24);
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        Date date1 = format.parse(dateIn+" "+timeIn);
+        Date date2 = format.parse(dateOut+" "+timeOut);
+        double duration = date2.getTime() - date1.getTime();
 
-        price = duration;
+        double durationInHours = (duration/millisecondsPerHour);
 
-        if(duration>=12) {
-			price = 12;
-		}
-		
-		if(lostTicket == true) {
-			price = 18;
-		}
-		
+        price = durationInHours*hourlyRate;
+        
 		if(isMember == true) {
 			price = price * 0.75;
 		}
+
+        //the following is test code (temporary)
+        System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+duration+"ms Price: $"+price);
 		
-		return price;
+        //we need to ensure that the price only has two decimal places
+        return price;
     }
 }

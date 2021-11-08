@@ -12,9 +12,9 @@ public class GUI_P implements ActionListener{
     private JLabel label;
     private JButton done;
 
-    public GUI_P(){
+    public GUI_P(double amountCharged){
         frame = new JFrame();
-        label = new JLabel("A charge in the amount of //amount// has been made to the "+ 
+        label = new JLabel("A charge in the amount of $"+amountCharged+" has been made to the "+ 
         "account you provided. Have a nice day! :)");
         done = new JButton("Main Menu");
         done.addActionListener(this);
