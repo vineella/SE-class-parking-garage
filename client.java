@@ -95,7 +95,7 @@ public class client {
         System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+duration+"ms Price: $"+price);
 		
         //we need to ensure that the price only has two decimal places
-        DecimalFormat dFormatter = new DecimalFormat("###.##");
+        DecimalFormat dFormatter = new DecimalFormat("0.00");
         String formatted = dFormatter.format(price);
         return formatted;
     }
