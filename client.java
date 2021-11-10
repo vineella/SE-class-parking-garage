@@ -1,6 +1,7 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.DecimalFormat;
 public class client {
     private String firstN;
     private String lastN;
@@ -74,7 +75,7 @@ public class client {
         " floor: " + floor + " spot: " + spot);
     }
 
-    public double getPrice() throws ParseException{
+    public String getPrice() throws ParseException{
         double price;
 
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
@@ -94,7 +95,8 @@ public class client {
         System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+duration+"ms Price: $"+price);
 		
         //we need to ensure that the price only has two decimal places
-        Math.round((price*100.0)/100.0);
-        return price;
+        DecimalFormat dFormatter = new DecimalFormat("###.##");
+        String formatted = dFormatter.format(price);
+        return formatted;
     }
 }
