@@ -75,7 +75,7 @@ public class client {
         " floor: " + floor + " spot: " + spot);
     }
 
-    public double getPrice() throws ParseException{
+    public Double getPrice() throws ParseException{
         double price;
 
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
@@ -90,14 +90,15 @@ public class client {
 		if(isMember == true) {
 			price = price * 0.75;
 		}
-
         //the following is test code (temporary)
         System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+duration+"ms Price: $"+price);
-		
+
         //we need to ensure that the price only has two decimal places
         DecimalFormat dFormatter = new DecimalFormat("0.00");
         String formatted = dFormatter.format(price);
-        price = Double.parseDouble(formatted);
-        return price;
+        double bill = Double.parseDouble(formatted);
+        return bill;
     }
+    
+
 }
