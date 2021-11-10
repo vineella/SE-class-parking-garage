@@ -91,13 +91,13 @@ public class client {
 			price = price * 0.75;
 		}
         //the following is test code (temporary)
-        System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+duration+"ms Price: $"+price);
+        System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+durationInHours+"hrs Price: $"+price);
 
         //we need to ensure that the price only has two decimal places
         DecimalFormat dFormatter = new DecimalFormat("0.00");
         String formatted = dFormatter.format(price);
-        double bill = Double.parseDouble(formatted);
-        return bill;
+        price = Double.parseDouble(formatted);
+        return price;
     }
     
 
