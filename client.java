@@ -94,6 +94,7 @@ public class client {
         System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+duration+"ms Price: $"+price);
 		
         //we need to ensure that the price only has two decimal places
+        Math.round((price*100.0)/100.0);
         return price;
     }
 }
