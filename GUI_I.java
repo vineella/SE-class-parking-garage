@@ -35,9 +35,24 @@ public class GUI_I implements ActionListener{
     private String phoneNumber;
     private String dateIn;
     private String timeIn;
+    private static final int lengthOfDateString=10;
+    private static final int lengthOfTimeString=5;
+    private static final int maxMonth=12;
+    private static int maxDaysInMonth=30;
+    private static final int maxHours=23;
+    private static final int maxMinutes=59;
+    private static final String strFeb="02";
+    private static final String strJan="01";
+    private static final String strMar="03";
+    private static final String strMay="05";
+    private static final String strJul="07";
+    private static final String strAug="08";
+    private static final String strOct="10";
+    private static final String strDec="12";
+    private JLabel oopsies;
 
 
-    public GUI_I(int whichFloor, int whichSpot){
+    public GUI_I(int whichFloor, int whichSpot, boolean isThisARedo){
         this.whichFloor=whichFloor;
         this.whichSpot=whichSpot;
         done = new JButton("Click here when finished.");
@@ -54,7 +69,7 @@ public class GUI_I implements ActionListener{
         dateInLabel = new JLabel("Please Indicate Today's Date (MM/DD/YYYY):");
         dateInInput = new JTextField("");
         timeInLabel = new JLabel("Please Indicate the Current Time Using the Military"+
-        "/24-Hour System(HH:MM)");
+        "/24-Hour System(HH:mm)");
         timeInInput = new JTextField("");
 
 
@@ -64,6 +79,11 @@ public class GUI_I implements ActionListener{
         panel.setBorder(BorderFactory.createEmptyBorder(210, 210, 65, 210));
         panel.setLayout(new GridLayout(0, 1));
 
+
+        if(isThisARedo==true){
+            oopsies = new JLabel("Oops! That information wasn't formatted correctly! Please try again! :)");
+            panel.add(oopsies);
+        }
         panel.add(firstNameLabel);
         panel.add(firstNameInput);
         panel.add(lastNameLabel);
@@ -95,8 +115,104 @@ public class GUI_I implements ActionListener{
         frame.pack();
         frame.setVisible(true);
     }
-    
 
+    public static boolean isInteger(String str, int start, int end) {
+        if (str == null) {
+            return false;
+        }
+        int length = str.length();
+        if (length == 0) {
+            return false;
+        }
+        for (int i=start; i < end; i++) {
+            char c = str.charAt(i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isDateFormatted(String timeIn, String dateIn){
+        boolean isFormattedCorrectly=true;
+        String month;
+        String day;
+        String year;
+        String hour;
+        String minute;
+        int maxDaysInFeb=28;
+        //if the date string isn't the length we desire then we automatically know it's wrong
+        if(dateIn.length()!=lengthOfDateString){
+            isFormattedCorrectly=false;
+        //if the first two characters of the date aren't integers then 
+        //we automatically know it's wrong
+        }else if(isInteger(dateIn, 0, 2)==false){
+            isFormattedCorrectly=false;
+        //if the third and fourth characters of the date aren't integers then
+        //we automatically know it's wrong
+        }else if(isInteger(dateIn, 3, 5)==false){
+            isFormattedCorrectly=false;
+        //if the year isn't represented only in integers then
+        //we automatically know it's wrong
+        }else if(isInteger(dateIn, 6,dateIn.length())==false){
+            isFormattedCorrectly=false;
+        //if the '/' isn't here then the formatter won't take the date
+        }else if(dateIn.charAt(2)!= '/'){
+            isFormattedCorrectly=false;
+        //if the '/' isn't here then the formatter won't take the date
+        }else if(dateIn.charAt(5)!= '/'){
+            isFormattedCorrectly=false;
+        //if the time string isn't the length we desire then we automatically know it's wrong
+        }else if(timeIn.length()!=lengthOfTimeString){
+            isFormattedCorrectly=false;
+        //if the first two characters of the time aren't integers then 
+        //we automatically know it's wrong
+        }else if(isInteger(timeIn, 0, 2)==false){
+            isFormattedCorrectly=false;
+        //if the third and fourth characters of the time aren't integers then
+        //we automatically know it's wrong
+        }else if(isInteger(timeIn, 3, 5)==false){
+            isFormattedCorrectly=false;
+        //if the ':' isn't here then the formatter won't take the time
+        }else if(timeIn.charAt(2)!= ':'){
+            isFormattedCorrectly=false;
+        }else{
+            month=dateIn.substring(0, 2);
+            day=dateIn.substring(3, 5);
+            year=dateIn.substring(6, dateIn.length());
+            hour=timeIn.substring(0, 2);
+            minute=timeIn.substring(3, 5);
+            if(Integer.parseInt(month)>maxMonth){
+                isFormattedCorrectly=false;
+            //if the day is the 31st, we have to make sure it is in a month with 31 days
+            }else if(Integer.parseInt(day)>maxDaysInMonth){
+                isFormattedCorrectly=false;
+                if((month.compareTo(strJan)==0 || month.compareTo(strMar)==0 || month.compareTo(strMay)==0
+                || month.compareTo(strJul)==0 || month.compareTo(strAug)==0 || month.compareTo(strOct)==0
+                || month.compareTo(strDec)==0) && Integer.parseInt(day)==31){
+                    isFormattedCorrectly=true;
+                }
+            }else if(Integer.parseInt(hour)>maxHours){
+                isFormattedCorrectly=false;
+            }else if(Integer.parseInt(minute)>maxMinutes){
+                isFormattedCorrectly=false;
+            //now we have to make sure they aren't going over the number of days in February
+            }else if(month.compareTo(strFeb)==0){
+                //have to be sure to include the case for leap years
+                if((Integer.parseInt(year)%4)==0){
+                    if((Integer.parseInt(year)%100)==0 && (Integer.parseInt(year)%400)==0){
+                        maxDaysInFeb=29;
+                    }else if((Integer.parseInt(year)%100) != 0){
+                        maxDaysInFeb=29;
+                    }
+                }
+                if(Integer.parseInt(day)>maxDaysInFeb){
+                    isFormattedCorrectly=false;
+                }
+            }
+        }
+        return isFormattedCorrectly;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -113,10 +229,14 @@ public class GUI_I implements ActionListener{
             phoneNumber = phoneNumberInput.getText();
             dateIn = dateInInput.getText();
             timeIn = timeInInput.getText();
-            Client = new client(firstName, lastName, cardNumber, phoneNumber, dateIn, timeIn, boolIsMember, whichFloor, whichSpot);
-            System.out.println(Client.toString()); //this line is temporary for testing
-            //here we bring up the frame that says you clocked in at
-            //whatever time, we'll see you later.
+            if(isDateFormatted(timeIn, dateIn)==true){
+                Client = new client(firstName, lastName, cardNumber, phoneNumber, dateIn, timeIn, boolIsMember, whichFloor, whichSpot);
+                System.out.println(Client.toString()); //this line is temporary for testing
+                //here we bring up the frame that says you clocked in at
+                //whatever time, we'll see you later.
+            }else{
+                new GUI_I(whichFloor, whichSpot, true);
+            }
             frame.setVisible(false);
         }
     }
