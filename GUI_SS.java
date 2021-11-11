@@ -51,24 +51,57 @@ public class GUI_SS implements ActionListener{
         frame.setVisible(true);
     }
 
+    public static boolean isInteger(String str) {
+        if (str == null) {
+            return false;
+        }
+        int length = str.length();
+        if (length == 0) {
+            return false;
+        }
+        for (int i=0; i < length; i++) {
+            char c = str.charAt(i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static int findNumFloor(){
+        int numFloor=0;
         System.out.println("How many floors would you like in your garage?");
         Scanner in = new Scanner(System.in);
-        int numFloor = in.nextInt();
+        String str = in.nextLine();
+        if(isInteger(str)==true){
+            numFloor = Integer.parseInt(str);
+        }
         return numFloor;
     }
 
     public static int findNumSpot(){ 
+        int numSpot=0;
         System.out.println("How many spots would you like on each floor?");
         Scanner in = new Scanner(System.in);
-        int numSpot = in.nextInt();
+        String str = in.nextLine();
+        if(isInteger(str)==true){
+            numSpot = Integer.parseInt(str);
+        }
         return numSpot;
     }
 
 
     public static void main(String[] args){
-        int numFloor = findNumFloor();
+        int numFloor=findNumFloor();
+        while(numFloor == 0){
+            System.out.println("Please enter a positive integer only.");
+            numFloor=findNumFloor();
+        }
         int numSpot = findNumSpot();
+        while(numSpot == 0){
+            System.out.println("Please enter a positive integer only.");
+            numSpot=findNumSpot();
+        }
         new GUI_SS(numFloor, numSpot);
     }
 

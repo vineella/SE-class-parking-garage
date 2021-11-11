@@ -31,8 +31,6 @@ public class GUI_P implements ActionListener{
         frame.setTitle("Thank you for using Group 5 Parking Garage!");
         frame.pack();
         frame.setVisible(true);
-
-
     }
 
     @Override
