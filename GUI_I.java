@@ -26,7 +26,7 @@ public class GUI_I implements ActionListener{
     private JLabel isMember;
     private JButton isMemberInput;
     private boolean boolIsMember;
-    private client Client;
+    private static client Client;
     private int whichFloor;
     private int whichSpot;
     private String firstName;
@@ -114,6 +114,10 @@ public class GUI_I implements ActionListener{
         frame.setTitle("Please provide the information below:");
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public static client getClient(){
+        return Client;
     }
 
     public static boolean isInteger(String str, int start, int end) {
@@ -237,6 +241,8 @@ public class GUI_I implements ActionListener{
             }else{
                 new GUI_I(whichFloor, whichSpot, true);
             }
+            new GUI_P(false);
+            GUI.updateLabels();
             frame.setVisible(false);
         }
     }

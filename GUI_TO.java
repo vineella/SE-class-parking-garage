@@ -185,10 +185,12 @@ public class GUI_TO implements ActionListener {
                 } catch (ParseException e1) {
                     e1.printStackTrace();
                 }
-                new GUI_P(amountCharged);
+                new GUI_P(true);
+                GUI_P.setAmountCharged(amountCharged);
             }else{
                 new GUI_TO(true);
             }
+            GUI.updateLabels();
             frame.setVisible(false);
     }
 }

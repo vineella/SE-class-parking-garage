@@ -9,13 +9,13 @@ import java.awt.event.*;
 public class GUI implements ActionListener{
 
     public JFrame frame;
-    private JPanel panel;
+    private static JPanel panel;
     private JButton button_r;
     public static boolean isDroppingOff;
     private static int numFloors;
     private static int numSpots;
     private JButton[] floorButtons;
-    public JLabel[] floorLabels;
+    public static JLabel[] floorLabels;
     private boolean[] floorExists;
     private String whichFloor;
     private int intWhichFloor;
@@ -60,6 +60,13 @@ public class GUI implements ActionListener{
         frame.setVisible(true);
     }
 
+    public static void updateLabels(){
+        for(int i=0; i < numFloors; i++){
+            floorLabels[i].setText("There are "+parkingGarage.numSpotsAvailable(i)+" spots available on this floor.");
+        }
+        panel.revalidate();
+        panel.repaint();
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -75,6 +82,7 @@ public class GUI implements ActionListener{
                 floorGUIs[intWhichFloor-1]= new GUI_L(whichFloor, isDroppingOff, intWhichFloor, numSpots, parkingGarage);
                 floorExists[intWhichFloor-1]=true;
             }
+            frame.setVisible(false);
         }
     }
 }

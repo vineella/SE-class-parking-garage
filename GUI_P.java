@@ -11,11 +11,18 @@ public class GUI_P implements ActionListener{
     private JPanel panel;
     private JLabel label;
     private JButton done;
+    private static double amountCharged;
+    private client Client;
 
-    public GUI_P(double amountCharged){
+    public GUI_P(boolean isCheckingOut){
         frame = new JFrame();
-        label = new JLabel("A charge in the amount of $"+amountCharged+" has been made to the "+ 
-        "account you provided. Have a nice day! :)");
+        Client = GUI_I.getClient();
+        if(isCheckingOut==true){
+            label = new JLabel("A charge in the amount of $"+amountCharged+" has been made to the "+ 
+            "card you provided. Have a nice day! :)");
+        }else{
+            label = new JLabel("Thanks! You checked into Floor: "+Client.getFloor()+" Spot: "+Client.getSpot()+" under the name "+Client.getfirstN()+" "+Client.getLastN()+" at "+Client.gettimeIn()+" on "+Client.getdateIn());
+        }
         done = new JButton("Main Menu");
         done.addActionListener(this);
 
@@ -31,6 +38,10 @@ public class GUI_P implements ActionListener{
         frame.setTitle("Thank you for using Group 5 Parking Garage!");
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public static void setAmountCharged(double newAmount){
+        amountCharged = newAmount;
     }
 
     @Override
