@@ -1,7 +1,8 @@
 class parkingGarage {
-    int spots, floors;
-    int[][] garage;
-    int userFloor, userSpots;
+    private int spots, floors;
+    private int[][] garage;
+    private int counter;//this is simply test code that can be deleted when the numSpotsAvailable
+                        //method is completed
 
     //constructor declaring class
     public parkingGarage(int floors, int spots){
@@ -49,15 +50,10 @@ class parkingGarage {
         return availability;
     }
         
-    //method that gets all the spots
-    public void getAllSpots(){
-        for (int i=0; i<= floors; i++){
-            for (int j = 0; j <= spots; j++){
-                if (garage[i][j] == 0) {
-                    System.out.println("This spot is avaiable:" + "Floor: " + this.getFloors() + "Spot: " + this.getSpots());
-                }
-            }
-        }
+    //checks a given floor to see how many spots are available on that floor
+    public int numSpotsAvailable(int whichFloor){
+        counter++; //this is just test code so it will compile
+        return counter; //this is just test code so it will compile
     }
 
 }

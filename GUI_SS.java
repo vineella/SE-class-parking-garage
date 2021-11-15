@@ -15,8 +15,8 @@ public class GUI_SS implements ActionListener{
     private JButton leaving;
     private GUI garage;
     private int gDoesExist;
-    private int numFloors;
-    private int numSpots;
+    private static int numFloors;
+    private static int numSpots;
     private parkingGarage parkingGarage;
 
     public GUI_SS(int numFloor, int numSpot){
@@ -49,6 +49,14 @@ public class GUI_SS implements ActionListener{
         frame.setTitle("Welcome to Group 5 Parking Garage!");
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public static int getNumFloors(){
+        return numFloors;
+    }
+
+    public static int getNumSpots(){
+        return numSpots;
     }
 
     public static boolean isInteger(String str) {
@@ -92,6 +100,9 @@ public class GUI_SS implements ActionListener{
 
 
     public static void main(String[] args){
+        //eventually we will need for this to check if there is an already existing garage
+        //that the person wants to use, and if so, not do the following stuff
+        //if there already is a garage in use, then we will just skip to the GUI_SS of that garage
         int numFloor=findNumFloor();
         while(numFloor == 0){
             System.out.println("Please enter a positive integer only.");

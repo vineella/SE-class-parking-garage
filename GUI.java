@@ -8,7 +8,6 @@ import java.awt.event.*;
 
 public class GUI implements ActionListener{
 
-    private JLabel label;
     public JFrame frame;
     private JPanel panel;
     private JButton button_r;
@@ -16,6 +15,7 @@ public class GUI implements ActionListener{
     private static int numFloors;
     private static int numSpots;
     private JButton[] floorButtons;
+    public JLabel[] floorLabels;
     private boolean[] floorExists;
     private String whichFloor;
     private int intWhichFloor;
@@ -33,37 +33,33 @@ public class GUI implements ActionListener{
 
         frame = new JFrame();
 
-        label = new JLabel("Please indicate the space where you parked. :)");
-
         panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(120, 120, 40, 120));
-        panel.setLayout(new GridLayout(0, 1));
+        panel.setLayout(new GridLayout(0, 2));
 
         floorButtons = new JButton[numFloors];
+        floorLabels = new JLabel [numFloors];
         for(int i=0; i < numFloors; i++){
             int j=i+1;
             floorButtons[i]=new JButton("Level "+j);
             floorButtons[i].setActionCommand(Integer.toString(j));
             floorButtons[i].addActionListener(this);
             panel.add(floorButtons[i]);
+            floorLabels[i]=new JLabel("There are "+parkingGarage.numSpotsAvailable(i)+" spots available on this floor.");
+            panel.add(floorLabels[i]);
         }
         button_r = new JButton("Return to Previous Page");
         button_r.setActionCommand("r");
         button_r.addActionListener(this);
         panel.add(button_r);
-        panel.add(label);
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Welcome to Group 5 Parking Garage!");
+        frame.setTitle("Welcome to Group 5 Parking Garage! Please indicate the space where you parked. :)");
         frame.pack();
         frame.setVisible(true);
     }
 
-
-    public static void main(String[] args){
-        new GUI(isDroppingOff, numFloors, numSpots, parkingGarage);
-    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
