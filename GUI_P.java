@@ -18,10 +18,7 @@ public class GUI_P implements ActionListener{
     public GUI_P(boolean isCheckingOut){
         frame = new JFrame();
         Client = GUI_I.getClient();
-        if(isCheckingOut==true){
-            label = new JLabel("A charge in the amount of $"+amountCharged+" has been made to the "+ 
-            "card you provided. Have a nice day! :)");
-        }else{
+        if(isCheckingOut==false){
             label = new JLabel("Thanks! You checked into Floor: "+Client.getFloor()+" Spot: "+Client.getSpot()+" under the name "+Client.getfirstN()+" "+Client.getLastN()+" at "+Client.gettimeIn()+" on "+Client.getdateIn());
         }
         done = new JButton("Main Menu");
