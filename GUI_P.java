@@ -3,13 +3,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class GUI_P implements ActionListener{
     public static JFrame frame;
-    private JPanel panel;
-    private JLabel label;
+    private static JPanel panel;
+    private static JLabel label;
     private JButton done;
     private static double amountCharged;
     private client Client;
@@ -42,6 +43,14 @@ public class GUI_P implements ActionListener{
 
     public static void setAmountCharged(double newAmount){
         amountCharged = newAmount;
+        label.setText("A charge in the amount of $"+amountCharged+" has been made to the "+ 
+        "card you provided. Have a nice day! :)");
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    public static double getAmountCharged(){
+        return amountCharged;
     }
 
     @Override

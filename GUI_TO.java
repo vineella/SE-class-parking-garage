@@ -187,6 +187,8 @@ public class GUI_TO implements ActionListener {
                 }
                 new GUI_P(true);
                 GUI_P.setAmountCharged(amountCharged);
+                //test code
+                System.out.println(GUI_P.getAmountCharged());
             }else{
                 new GUI_TO(true);
             }
