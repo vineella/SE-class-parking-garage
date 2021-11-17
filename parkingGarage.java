@@ -54,9 +54,8 @@ class parkingGarage {
         for(int i =0; i<spots; i++){
             if (garage[whichFloor][i] == 0) {
             counter++; //this is just test code so it will compile
-    
-        }
-    }
+            }
+        }  
     return counter; //this is just test code so it will compile
     }
 }
