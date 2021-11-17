@@ -1,8 +1,6 @@
 class parkingGarage {
     private int spots, floors;
     private int[][] garage;
-    private int counter;//this is simply test code that can be deleted when the numSpotsAvailable
-                        //method is completed
 
     //constructor declaring class
     public parkingGarage(int floors, int spots){
@@ -52,9 +50,13 @@ class parkingGarage {
         
     //checks a given floor to see how many spots are available on that floor
     public int numSpotsAvailable(int whichFloor){
-        counter++; //this is just test code so it will compile
-        return counter; //this is just test code so it will compile
+        int counter = 0;
+        for(int i =0; i<spots; i++){
+            if (garage[whichFloor][i] == 0) {
+            counter++; //this is just test code so it will compile
+    
+        }
     }
-
+    return counter; //this is just test code so it will compile
+    }
 }
-
