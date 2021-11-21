@@ -1,7 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.text.DecimalFormat;
 public class client {
     private String firstN;
     private String lastN;
@@ -12,10 +11,16 @@ public class client {
     private String dateOut;
     private String timeOut;
     private boolean isMember;
+    private boolean hasInsurance;
+    private boolean lostTicket
     private int floor;
     private int spot;
     private final int millisecondsPerHour=3600000;
     private final int hourlyRate = 1;
+    static final double discount = 0.75;
+    static final double ins = 2;
+    static final double finalPrice = 12;
+    static final double lostPrice = 18;
         
     public client(String firstN, String lastN, String cardNum, String phoneNum, String dateIn, String timeIn, boolean isMember, int floor, int spot){
         this.firstN = firstN;
@@ -75,7 +80,7 @@ public class client {
         " floor: " + floor + " spot: " + spot);
     }
 
-    public Double getPrice() throws ParseException{
+    public double getPrice() throws ParseException{
         double price;
 
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
@@ -84,21 +89,41 @@ public class client {
         double duration = date2.getTime() - date1.getTime();
 
         double durationInHours = (duration/millisecondsPerHour);
+        double durationInDays = (durationInHours/24);
 
         price = durationInHours*hourlyRate;
         
 		if(isMember == true) {
-			price = price * 0.75;
+			price = price * discount;
 		}
-        //the following is test code (temporary)
-        System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+durationInHours+"hrs Price: $"+price);
+		
+		if(hasInsurance == true) {
+			price = price + ins;
+		}
+		
+		if (durationInHours > 12) {
+			price = finalPrice;
+			if(durationInHours % 24 == 0) {
+				price = durationInDays * finalPrice;
+			}
+		
+		}
+		
+		if(lostTicket == true) {
+			price = lostPrice;
+		}
+		
+		if(hasInsurance == true && lostTicket == true) {
+			price = hours;
+		}
+		
+		
 
+        //the following is test code (temporary)
+        System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+duration+"ms Price: $"+price);
+		
         //we need to ensure that the price only has two decimal places
-        DecimalFormat dFormatter = new DecimalFormat("0.00");
-        String formatted = dFormatter.format(price);
-        price = Double.parseDouble(formatted);
+        Math.round((price*100.0)/100.0);
         return price;
     }
-    
-
 }
