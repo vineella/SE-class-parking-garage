@@ -12,7 +12,6 @@ public class client {
     private String timeOut;
     private boolean isMember;
     private boolean hasInsurance;
-    private boolean lostTicket
     private int floor;
     private int spot;
     private final int millisecondsPerHour=3600000;
@@ -107,17 +106,7 @@ public class client {
 				price = durationInDays * finalPrice;
 			}
 		
-		}
-		
-		if(lostTicket == true) {
-			price = lostPrice;
-		}
-		
-		if(hasInsurance == true && lostTicket == true) {
-			price = hours;
-		}
-		
-		
+		}		
 
         //the following is test code (temporary)
         System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+duration+"ms Price: $"+price);
