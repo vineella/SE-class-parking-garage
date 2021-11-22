@@ -1,0 +1,56 @@
+mport java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.DecimalFormat;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ticketCounter{
+    //This are just the integers//
+    public int ticketCounter; 
+    public int ticker; 
+    public int plate; 
+    public int NewTicketCount; 
+    public int white = 1; // mid//
+    public int black = 3;  // top// 
+    public int memship;
+
+    //This is the ticket counter which goes up by 1 every single ticket, it is not random number generated.//
+
+    public Ticket () { 
+        ticketCounter = newTicketCount;
+        newTicketCount++;
+    }
+    //membership pricing tester code//
+    public membershiptic (int memship){
+        this.memship = memship;
+        if ( memship >= white){
+            this.price = 15; // 15 is just a filler price//
+        }
+        //This was just a tester? Will most likely replace //
+        else if (memship = black){
+            this.price = 10;
+
+        }
+    }
+    // This just pulls the price//
+    public Double getPrice() {
+        return price;
+    }
+    //This just pulls the plate number or I will make it just something they enter maunallu//
+    public Double getPlate() {
+        return plate;
+    }
+    //This is just for there name//
+    public Double getName() {
+        return name; 
+    }
+    //Printing out the ticket//
+    //The println line is just a tester line//
+
+    public String toString() {
+        return ("This is your ticket number " + this.TicketCount + " " + "Your Plate Numbers for easy track" + this.Plate + "and this your current price" + " " + get.Price);
+        System.out.println (" tester");
+    }
+    //This code is made in a seperate file for easily code instertion and also prevention of code break.//
