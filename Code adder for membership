@@ -1,0 +1,57 @@
+// scroll through and pick whatever code adders you want to add. Just let me know which one you want and ill update the master files with it after tweaking it so it doesn't break//
+
+public String membership(){
+    return ismembership;
+}
+public string Memlevelw(){
+    return wmemship;
+}
+public string Memlevelb(){
+    return bmemship;
+}
+
+if(wmemship == true){
+    price  = price * wdiscount;
+}
+
+if (bmemship == true) {
+    price =  price * bdiscount; 
+}
+
+//discount for white mem math code// 
+Math.round((price*90)/100.0); // replace numbers if needed//
+return wmemship;
+
+//discount for black mem math code//
+Math.round((price*70)/100.0); // fill in numbers if needed 
+return bmemship;
+
+// possible discount code or info //
+- white is mid tier 10% off
+- black is top tier 20-30% off 
+-regular membership is no tier 
+
+// throw in price bracket code if needed//
+refer back to w and b mem code or this newer code 
+if(hasWmembership ==  true ) {
+    price =  price * wdiscount;
+}
+if (hasbdiscount == true ){
+    price =  price * bdiscount;
+}
+
+//possible fine charge code throw in price bracket 
+if (hasfine ==  true) {
+    price =  price * fine;
+}
+
+//possible add for easier membership discount rate 
+static final double wdiscount = 0.80;
+static final double bdiscount = 0.85;
+// easier just to hard code the values 
+
+//discount membership greeter code//
+//white//
+System.out.print("Thank you for being a white tier member here is your total discount price: " +  this.price)
+//black//
+System.out.print(" Thank you for being a black tier member here is your total discount: " + this.price)
