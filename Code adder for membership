@@ -10,24 +10,24 @@ public string Memlevelb(){
     return bmemship;
 }
 
-if(wmemship == true){
-    price  = price * wdiscount;
+if(gmemship == true){
+    price  = price * gdiscount;
 }
 
 if (bmemship == true) {
     price =  price * bdiscount; 
 }
 
-//discount for white mem math code// 
+//discount for white/gold mem math code// 
 Math.round((price*90)/100.0); // replace numbers if needed//
-return wmemship;
+return gmemship;
 
 //discount for black mem math code//
 Math.round((price*70)/100.0); // fill in numbers if needed 
 return bmemship;
 
 // possible discount code or info //
-- white is mid tier 10% off
+- white/gold is mid tier 10% off
 - black is top tier 20-30% off 
 -regular membership is no tier 
 
@@ -51,7 +51,7 @@ static final double bdiscount = 0.85;
 // easier just to hard code the values 
 
 //discount membership greeter code//
-//white//
-System.out.print("Thank you for being a white tier member here is your total discount price: " +  this.price)
+//white/gold//
+System.out.print("Thank you for being a gold tier member here is your total discount price: " +  this.price)
 //black//
 System.out.print(" Thank you for being a black tier member here is your total discount: " + this.price)
