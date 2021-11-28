@@ -45,7 +45,7 @@ public class GUI implements ActionListener{
             floorButtons[i].setActionCommand(Integer.toString(j));
             floorButtons[i].addActionListener(this);
             panel.add(floorButtons[i]);
-            floorLabels[i]=new JLabel("There are "+parkingGarage.numSpotsAvailable(i)+" spots available on this floor.");
+            floorLabels[i]=new JLabel("There are "+parkingGarage.numSpotsAvailable(i)+" of " +numSpots + " spots available on this floor.");
             panel.add(floorLabels[i]);
         }
         button_r = new JButton("Return to Previous Page");
@@ -62,7 +62,7 @@ public class GUI implements ActionListener{
 
     public static void updateLabels(){
         for(int i=0; i < numFloors; i++){
-            floorLabels[i].setText("There are "+parkingGarage.numSpotsAvailable(i)+" spots available on this floor.");
+            floorLabels[i].setText("There are "+parkingGarage.numSpotsAvailable(i)+" of " +numSpots + " spots available on this floor.");
         }
         panel.revalidate();
         panel.repaint();
