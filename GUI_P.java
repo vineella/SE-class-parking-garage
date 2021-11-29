@@ -11,15 +11,20 @@ public class GUI_P implements ActionListener{
     public static JFrame frame;
     private static JPanel panel;
     private static JLabel label;
-    private JButton done;
+    private static JLabel label2;
+    private static JLabel label3;
+    private static JLabel label4;
+    private static JButton done;
     private static double amountCharged;
-    private client Client;
+    private static client Client;
 
     public GUI_P(boolean isCheckingOut){
         frame = new JFrame();
         Client = GUI_I.getClient();
         if(isCheckingOut==false){
-            label = new JLabel("Thanks! You checked into Floor: "+Client.getFloor()+" Spot: "+Client.getSpot()+" under the name "+Client.getfirstN()+" "+Client.getLastN()+" at "+Client.gettimeIn()+" on "+Client.getdateIn());
+            label = new JLabel("Thanks! You checked into Floor: "+Client.getFloor()+" Spot: "
+            +Client.getSpot()+" under the name "+Client.getfirstN()+" "+Client.getLastN()
+            +" at "+Client.gettimeIn()+" on "+Client.getdateIn());
         }
         done = new JButton("Main Menu");
         done.addActionListener(this);
@@ -40,8 +45,18 @@ public class GUI_P implements ActionListener{
 
     public static void setAmountCharged(double newAmount){
         amountCharged = newAmount;
-        label.setText("A charge in the amount of $"+amountCharged+" has been made to the "+ 
-        "card you provided. Have a nice day! :)");
+        label.setText("You checked in at "+Client.gettimeIn()+" on "+Client.getdateIn()
+        +" and you checked out at "+Client.gettimeOut()+" on "+Client.getdateOut()+"!");
+        panel.remove(done);
+        label2 = new JLabel("At the rate of $1/hr for stays shorter than 12 hours and $12/day for "
+        +"stays longer");
+        label3 = new JLabel("than 12 hours a charge in the amount of $"+amountCharged+" has been "
+        +"made to the "); 
+        label4 = new JLabel("card you provided. Have a nice day! :)");
+        panel.add(label2);
+        panel.add(label3);
+        panel.add(label4);
+        panel.add(done);
         panel.revalidate();
         panel.repaint();
     }
