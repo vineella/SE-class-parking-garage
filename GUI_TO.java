@@ -35,8 +35,14 @@ public class GUI_TO implements ActionListener {
     private static final String strOct="10";
     private static final String strDec="12";
     private JLabel oopsies;
+    private parkingGarage parkingGarage;
+    private int whichFloor;
+    private int whichSpot;
 
-    public GUI_TO(boolean isThisARedo){
+    public GUI_TO(boolean isThisARedo, parkingGarage parkingGarage, int whichFloor, int whichSpot){
+        this.parkingGarage=parkingGarage;
+        this.whichFloor=whichFloor;
+        this.whichSpot=whichSpot;
         done = new JButton("Click here when finished.");
         done.setActionCommand("d");
         done.addActionListener(this);
@@ -175,7 +181,7 @@ public class GUI_TO implements ActionListener {
             //the following line is for testing purposes only and should be
             //replaced with an instance of grabbing a specific client from the 
             //database when that becomes possible
-            Client = new client("Guy", "Fieri", "0000111122223333", "(555)555-5555", "11/03/2021", "00:00", true, 1, 1);
+            Client = parkingGarage.getClientAt(whichFloor-1, whichSpot-1);
             Client.setdateOut(dateOut);
             Client.settimeOut(timeOut);
             if(isDateFormatted(timeOut, dateOut)==true){
@@ -185,12 +191,12 @@ public class GUI_TO implements ActionListener {
                 } catch (ParseException e1) {
                     e1.printStackTrace();
                 }
-                new GUI_P(true);
-                GUI_P.setAmountCharged(amountCharged);
+                new GUI_P(true, parkingGarage, whichFloor, whichSpot);
+                GUI_P.setAmountCharged(amountCharged, Client);
                 //test code
                 System.out.println(GUI_P.getAmountCharged());
             }else{
-                new GUI_TO(true);
+                new GUI_TO(true, parkingGarage, whichFloor, whichFloor);
             }
             GUI.updateLabels();
             frame.setVisible(false);

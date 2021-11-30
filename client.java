@@ -8,8 +8,8 @@ public class client {
     private String phoneNum; 
     private String dateIn;
     private String timeIn;
-    private String dateOut;
-    private String timeOut;
+    public String dateOut;
+    public String timeOut;
     private boolean isMember;
     private int floor=0;
     private int spot=0;
@@ -18,7 +18,8 @@ public class client {
     static final double discount = 0.75;
     static final double finalPrice = 12;
         
-    public client(String firstN, String lastN, String cardNum, String phoneNum, String dateIn, String timeIn, boolean isMember, int floor, int spot){
+    public client(String firstN, String lastN, String cardNum, String phoneNum, 
+    String dateIn, String timeIn, boolean isMember, int floor, int spot){
         this.firstN = firstN;
         this.lastN = lastN;
         this.cardNum = cardNum;
@@ -108,7 +109,7 @@ public class client {
 		}
 
         //the following is test code (temporary)
-        System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+duration+"ms Price: $"+price);
+        System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+durationInDays+"days Price: $"+price);
 		
         //we need to ensure that the price only has two decimal places
         price=Math.round(price*100.0)/100.0;

@@ -26,7 +26,6 @@ public class GUI_I implements ActionListener{
     private JLabel isMember;
     private JButton isMemberInput;
     private boolean boolIsMember;
-    private static client Client;
     private int whichFloor;
     private int whichSpot;
     private String firstName;
@@ -50,11 +49,13 @@ public class GUI_I implements ActionListener{
     private static final String strOct="10";
     private static final String strDec="12";
     private JLabel oopsies;
+    private parkingGarage parkingGarage;
 
 
-    public GUI_I(int whichFloor, int whichSpot, boolean isThisARedo){
+    public GUI_I(int whichFloor, int whichSpot, boolean isThisARedo, parkingGarage parkingGarage){
         this.whichFloor=whichFloor;
         this.whichSpot=whichSpot;
+        this.parkingGarage=parkingGarage;
         done = new JButton("Click here when finished.");
         done.setActionCommand("d");
         done.addActionListener(this);
@@ -114,10 +115,6 @@ public class GUI_I implements ActionListener{
         frame.setTitle("Please provide the information below:");
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public static client getClient(){
-        return Client;
     }
 
     public static boolean isInteger(String str, int start, int end) {
@@ -234,14 +231,15 @@ public class GUI_I implements ActionListener{
             dateIn = dateInInput.getText();
             timeIn = timeInInput.getText();
             if(isDateFormatted(timeIn, dateIn)==true){
-                Client = new client(firstName, lastName, cardNumber, phoneNumber, dateIn, timeIn, boolIsMember, whichFloor, whichSpot);
-                System.out.println(Client.toString()); //this line is temporary for testing
-                //here we bring up the frame that says you clocked in at
-                //whatever time, we'll see you later.
+                client newClient = new client(firstName, lastName, cardNumber, phoneNumber, 
+                dateIn, timeIn, boolIsMember, whichFloor, whichSpot);
+                parkingGarage.setClientAt(whichFloor-1, whichSpot-1, newClient);
+                //this line is temporary for testing
+                System.out.println(newClient.toString()); 
             }else{
-                new GUI_I(whichFloor, whichSpot, true);
+                new GUI_I(whichFloor, whichSpot, true, parkingGarage);
             }
-            new GUI_P(false);
+            new GUI_P(false, parkingGarage, whichFloor, whichSpot);
             GUI.updateLabels();
             frame.setVisible(false);
         }

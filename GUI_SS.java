@@ -22,6 +22,8 @@ public class GUI_SS implements ActionListener{
     public GUI_SS(int numFloor, int numSpot){
         numFloors=numFloor;
         numSpots=numSpot;
+        //here we have to either load up the current garage or
+        //do the following if there isn't a current one
         parkingGarage = new parkingGarage(numFloors, numSpots);
 
         frame = new JFrame();
@@ -100,9 +102,6 @@ public class GUI_SS implements ActionListener{
 
 
     public static void main(String[] args){
-        //eventually we will need for this to check if there is an already existing garage
-        //that the person wants to use, and if so, not do the following stuff
-        //if there already is a garage in use, then we will just skip to the GUI_SS of that garage
         int numFloor=findNumFloor();
         while(numFloor == 0){
             System.out.println("Please enter a positive integer only.");

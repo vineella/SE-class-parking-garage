@@ -18,9 +18,9 @@ public class GUI_P implements ActionListener{
     private static double amountCharged;
     private static client Client;
 
-    public GUI_P(boolean isCheckingOut){
+    public GUI_P(boolean isCheckingOut, parkingGarage parkingGarage, int whichFloor, int whichSpot){
         frame = new JFrame();
-        Client = GUI_I.getClient();
+        Client = parkingGarage.getClientAt(whichFloor-1, whichSpot-1);
         if(isCheckingOut==false){
             label = new JLabel("Thanks! You checked into Floor: "+Client.getFloor()+" Spot: "
             +Client.getSpot()+" under the name "+Client.getfirstN()+" "+Client.getLastN()
@@ -43,16 +43,16 @@ public class GUI_P implements ActionListener{
         frame.setVisible(true);
     }
 
-    public static void setAmountCharged(double newAmount){
+    public static void setAmountCharged(double newAmount, client Client){
         amountCharged = newAmount;
         label.setText("You checked in at "+Client.gettimeIn()+" on "+Client.getdateIn()
         +" and you checked out at "+Client.gettimeOut()+" on "+Client.getdateOut()+"!");
         panel.remove(done);
         label2 = new JLabel("At the rate of $1/hr for stays shorter than 12 hours and $12/day for "
         +"stays longer");
-        label3 = new JLabel("than 12 hours a charge in the amount of $"+amountCharged+" has been "
-        +"made to the "); 
-        label4 = new JLabel("card you provided. Have a nice day! :)");
+        label3 = new JLabel("than 12 hours (and a 25% discount if you're a member) a charge in the"
+        +" amount of "); 
+        label4 = new JLabel("$"+amountCharged+" has been made to the card you provided. Have a nice day! :)");
         panel.add(label2);
         panel.add(label3);
         panel.add(label4);
