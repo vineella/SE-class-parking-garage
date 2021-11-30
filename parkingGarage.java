@@ -35,22 +35,14 @@ class parkingGarage {
     //this method should take in a floor number and a spot number
     //and return the client in that spot
     public client getClientAt(int floor, int spot){
-        //this is just test code
-        client Client = new client("Guy", "Fieri", "0000111122223333", "(555)555-5555", 
-        "11/03/2021", "00:00", true, 1, 1);
-        return Client;
-        //end of test code
+        return clients[floor][spot];
     }
 
     //this method should take in a floor number, spot number,
     //and a client, and add that client to this class's client
     //array at that floor and spot
     public void setClientAt(int floor, int spot, client client){
-        //this is just test code
-        client Client = new client("Guy", "Fieri", "0000111122223333", "(555)555-5555", 
-        "11/03/2021", "00:00", true, 1, 1);
-        clients[floor][spot]=Client;
-        //end of test code
+        clients[floor][spot] = client;
     }
 
 
