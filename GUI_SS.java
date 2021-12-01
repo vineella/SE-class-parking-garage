@@ -130,7 +130,7 @@ public class GUI_SS implements ActionListener{
 
             coming = new JButton("I am leaving my car here");
             leaving = new JButton("I am leaving with my car");
-            shutdown = new JButton("ShutDown");
+            shutdown = new JButton("Power Off");
 
 
             coming.setActionCommand("c");
