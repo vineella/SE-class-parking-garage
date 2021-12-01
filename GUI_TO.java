@@ -38,7 +38,8 @@ public class GUI_TO implements ActionListener {
     private parkingGarage parkingGarage;
     private int whichFloor;
     private int whichSpot;
-
+    private static boolean didJustBecomeMember=false;
+    
     public GUI_TO(boolean isThisARedo, parkingGarage parkingGarage, int whichFloor, int whichSpot){
         this.parkingGarage=parkingGarage;
         this.whichFloor=whichFloor;
@@ -74,6 +75,10 @@ public class GUI_TO implements ActionListener {
         frame.setTitle("Please provide the information below:");
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public static void setDidJustBecomeMember(boolean ans){
+        didJustBecomeMember=ans;
     }
 
     public static boolean isInteger(String str, int start, int end) {
@@ -187,7 +192,7 @@ public class GUI_TO implements ActionListener {
             if(isDateFormatted(timeOut, dateOut)==true){
                 System.out.println(Client.toString()); //this line is temporary for testing
                 try {
-                    amountCharged=Client.getPrice();
+                    amountCharged=Client.getPrice(didJustBecomeMember);
                 } catch (ParseException e1) {
                     e1.printStackTrace();
                 }

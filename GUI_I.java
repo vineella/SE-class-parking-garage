@@ -220,6 +220,7 @@ public class GUI_I implements ActionListener{
         if(e.getActionCommand().equals("m")){
             isMemberInput.setText("You are now a member! :)");
             isMemberInput.setActionCommand("n");
+            GUI_TO.setDidJustBecomeMember(true);
             panel.revalidate();
             panel.repaint();
             boolIsMember=true;

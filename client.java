@@ -118,10 +118,3 @@ public class client {
         return price;
     }
 }
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-
-    }
-}
