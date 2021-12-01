@@ -24,6 +24,7 @@ public class GUI_SS implements ActionListener{
     private static int numSpots;
     private static parkingGarage parkingGarage;
     private static boolean isUsingOldGarage=false;
+    private JButton shutdown;
 
     public GUI_SS(){
         preframe = new JFrame();
@@ -49,7 +50,7 @@ public class GUI_SS implements ActionListener{
     
         preframe.add(prepanel, BorderLayout.CENTER);
         preframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        preframe.setTitle("Please select an option belwow.");
+        preframe.setTitle("Please select an option below.");
         preframe.pack();
         preframe.setVisible(true);
     }
@@ -129,12 +130,16 @@ public class GUI_SS implements ActionListener{
 
             coming = new JButton("I am leaving my car here");
             leaving = new JButton("I am leaving with my car");
-            
+            shutdown = new JButton("ShutDown");
+
+
             coming.setActionCommand("c");
             leaving.setActionCommand("l");
+            shutdown.setActionCommand("s");
     
             coming.addActionListener(this);
             leaving.addActionListener(this);
+            shutdown.addActionListener(this);
     
             label = new JLabel("Please select an option below.");
     
@@ -144,6 +149,7 @@ public class GUI_SS implements ActionListener{
             panel.add(label);
             panel.add(coming);
             panel.add(leaving);
+            panel.add(shutdown);
     
             frame.add(panel, BorderLayout.CENTER);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -170,6 +176,8 @@ public class GUI_SS implements ActionListener{
             isUsingOldGarage = false;
             pullUpgarage();
             preframe.setVisible(false);
+        }else if (e.getActionCommand().equals("s")){ 
+            //where we read out the garage to the flat file
         }else{
             boolean IDO =true;
             if(e.getActionCommand().equals("c")){
