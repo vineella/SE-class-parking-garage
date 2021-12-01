@@ -17,6 +17,7 @@ public class client {
     private final int hourlyRate = 1;
     static final double discount = 0.75;
     static final double finalPrice = 12;
+    static final int memberCharge = 20;
         
     public client(String firstN, String lastN, String cardNum, String phoneNum, 
     String dateIn, String timeIn, boolean isMember, int floor, int spot){
@@ -77,7 +78,7 @@ public class client {
         " floor: " + floor + " spot: " + spot);
     }
 
-    public double getPrice() throws ParseException{
+    public double getPrice(boolean becomeMember) throws ParseException{
         double price;
 
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
@@ -90,21 +91,22 @@ public class client {
 
         price = durationInHours*hourlyRate;
 
-        /* the following are some edits I suggest making to get the price to work properly
+        // the following are some edits I suggest making to get the price to work properly
 		if (durationInHours > 12) {
             if(durationInDays < 1){
                 price=finalPrice;
-            }else{
+            }
+            else{
                 price=finalPrice*durationInDays;
             }
-        }*/
+        }
 
-        /* I also strongly suggest cutting this completely because it doesn't appear to do anything
-        if(durationInHours % 24 == 0) {
-			price = durationInDays * finalPrice;
-		}*/
-
-		if(isMember == true) {
+		if(isMember == true && becomeMember == true) {
+			price = price * discount + memberCharge;
+			
+		}
+		
+		if(isMember == true && becomeMember == false) {
 			price = price * discount;
 		}
 
@@ -114,5 +116,12 @@ public class client {
         //we need to ensure that the price only has two decimal places
         price=Math.round(price*100.0)/100.0;
         return price;
+    }
+}
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+
     }
 }
