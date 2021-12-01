@@ -8,49 +8,54 @@ import java.awt.event.*;
 import java.util.Scanner;
 
 public class GUI_SS implements ActionListener{
-    private JLabel label;
+    private JLabel prelabel;
+    private static JLabel label;
+    public static JFrame preframe;
     public static JFrame frame;
-    private JPanel panel;
-    private JButton coming;
-    private JButton leaving;
+    private JPanel prepanel;
+    private static JPanel panel;
+    private JButton oldGarage;
+    private JButton newGarage;
+    private static JButton coming;
+    private static JButton leaving;
     private GUI garage;
     private int gDoesExist;
     private static int numFloors;
     private static int numSpots;
-    private parkingGarage parkingGarage;
+    private static parkingGarage parkingGarage;
+    private static boolean isUsingOldGarage=false;
 
-    public GUI_SS(int numFloor, int numSpot){
-        numFloors=numFloor;
-        numSpots=numSpot;
-        //here we have to either load up the current garage or
-        //do the following if there isn't a current one
+    public GUI_SS(){
+        preframe = new JFrame();
+
+        oldGarage = new JButton("I would like to use my previous garage.");
+        newGarage = new JButton("I would like to start a new garage.");
+
+        oldGarage.setActionCommand("o");
+        newGarage.setActionCommand("n");
+
+        oldGarage.addActionListener(this);
+        newGarage.addActionListener(this);
+
+        prelabel = new JLabel("Please select an option");
+
+        prepanel = new JPanel();
+
+        prepanel.setBorder(BorderFactory.createEmptyBorder(200, 200, 60, 200));
+        prepanel.setLayout(new GridLayout(0, 1));
+        prepanel.add(prelabel);
+        prepanel.add(oldGarage);
+        prepanel.add(newGarage);
+    
+        preframe.add(prepanel, BorderLayout.CENTER);
+        preframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        preframe.setTitle("Please select an option belwow.");
+        preframe.pack();
+        preframe.setVisible(true);
+    }
+
+    public static void setGarage(int numFloors, int numSpots){
         parkingGarage = new parkingGarage(numFloors, numSpots);
-
-        frame = new JFrame();
-
-        coming = new JButton("I am leaving my car here");
-        leaving = new JButton("I am leaving with my car");
-        
-        coming.setActionCommand("c");
-        leaving.setActionCommand("l");
-
-        coming.addActionListener(this);
-        leaving.addActionListener(this);
-
-        label = new JLabel("Please select an option below.");
-
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(200, 200, 60, 200));
-        panel.setLayout(new GridLayout(0, 1));
-        panel.add(label);
-        panel.add(coming);
-        panel.add(leaving);
-
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Welcome to Group 5 Parking Garage!");
-        frame.pack();
-        frame.setVisible(true);
     }
 
     public static int getNumFloors(){
@@ -100,19 +105,56 @@ public class GUI_SS implements ActionListener{
         return numSpot;
     }
 
+    public static void findGarageSize(){
+        numFloors=findNumFloor();
+        while(numFloors == 0){
+            System.out.println("Please enter a positive integer only.");
+            numFloors=findNumFloor();
+        }
+        numSpots = findNumSpot();
+        while(numSpots == 0){
+            System.out.println("Please enter a positive integer only.");
+            numSpots=findNumSpot();
+        }
+    }
+
+    public void pullUpgarage(){
+        if(isUsingOldGarage==true){
+            //load old garage
+        }else{
+            findGarageSize();
+            setGarage(numFloors, numSpots);
+
+            frame = new JFrame();
+
+            coming = new JButton("I am leaving my car here");
+            leaving = new JButton("I am leaving with my car");
+            
+            coming.setActionCommand("c");
+            leaving.setActionCommand("l");
+    
+            coming.addActionListener(this);
+            leaving.addActionListener(this);
+    
+            label = new JLabel("Please select an option below.");
+    
+            panel = new JPanel();
+            panel.setBorder(BorderFactory.createEmptyBorder(200, 200, 60, 200));
+            panel.setLayout(new GridLayout(0, 1));
+            panel.add(label);
+            panel.add(coming);
+            panel.add(leaving);
+    
+            frame.add(panel, BorderLayout.CENTER);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setTitle("Welcome to Group 5 Parking Garage!");
+            frame.pack();
+            frame.setVisible(true);
+        }
+    }
 
     public static void main(String[] args){
-        int numFloor=findNumFloor();
-        while(numFloor == 0){
-            System.out.println("Please enter a positive integer only.");
-            numFloor=findNumFloor();
-        }
-        int numSpot = findNumSpot();
-        while(numSpot == 0){
-            System.out.println("Please enter a positive integer only.");
-            numSpot=findNumSpot();
-        }
-        new GUI_SS(numFloor, numSpot);
+        new GUI_SS();
     }
 
     @Override
@@ -120,19 +162,29 @@ public class GUI_SS implements ActionListener{
         //the value of IDO doesn't matter in the line below.
         //It is just to initialize it in a form the final else
         //statement will accept.
-        boolean IDO =true;
-        if(e.getActionCommand().equals("c")){
-            IDO = true;
-            garage.isDroppingOff = IDO;
-        }else if(e.getActionCommand().equals("l")){
-            IDO = false;
-            garage.isDroppingOff = IDO;
-        }
-        if(gDoesExist==1){
-            garage.frame.setVisible(true);
+        if(e.getActionCommand().equals("o")){
+            isUsingOldGarage = true;
+            pullUpgarage();
+            preframe.setVisible(false);
+        }else if(e.getActionCommand().equals("n")){
+            isUsingOldGarage = false;
+            pullUpgarage();
+            preframe.setVisible(false);
         }else{
-            garage = new GUI(IDO, numFloors, numSpots, parkingGarage);
-            gDoesExist = 1;
-        }
+            boolean IDO =true;
+            if(e.getActionCommand().equals("c")){
+                IDO = true;
+                garage.isDroppingOff = IDO;
+            }else if(e.getActionCommand().equals("l")){
+                IDO = false;
+                garage.isDroppingOff = IDO;
+            }
+            if(gDoesExist==1){
+                garage.frame.setVisible(true);
+            }else{
+                garage = new GUI(IDO, numFloors, numSpots, parkingGarage);
+                gDoesExist = 1;
+            }
+        }  
     }
 }
