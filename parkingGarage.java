@@ -27,6 +27,10 @@ class parkingGarage {
         return garage;
     }
 
+    public void setArray(int floor, int spot, int fullOrNot){
+        garage[floor][spot]=fullOrNot;
+    }
+
     //method to fill a specific spot
     public void fillSpot(int userFloor, int userSpot){
         garage[userFloor][userSpot]=1;
