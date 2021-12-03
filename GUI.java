@@ -8,7 +8,7 @@ import java.awt.event.*;
 
 public class GUI implements ActionListener{
 
-    public JFrame frame;
+    public static JFrame frame;
     private static JPanel panel;
     private JButton button_r;
     public static boolean isDroppingOff;
@@ -72,6 +72,7 @@ public class GUI implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("r")){
             frame.setVisible(false);
+            GUI_SS.frame.setVisible(true);
         }else{
             whichFloor = e.getActionCommand();
             intWhichFloor=Integer.parseInt(whichFloor);

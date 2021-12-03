@@ -70,6 +70,7 @@ public class GUI_L implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("r")){
             frame.setVisible(false);
+            GUI_SS.frame.setVisible(true);
         }else if(isDroppingOff == true){
             //here we only want this to happen if we check the garage 
             //class and the spot is actually empty
