@@ -58,12 +58,11 @@ class parkingGarage {
     //create a code that searches for a specific spot
     public boolean isAvailable(int[][] garage, int userFloor, int userSpot) {
         boolean availability;
-                if (garage[userFloor][userSpot] == 0){           
-                    availability=true;
-                }
-                else {
-                    availability=false;
-                }       
+        if (garage[userFloor][userSpot] == 0){           
+            availability=true;
+        }else {
+            availability=false;
+        }       
         return availability;
     }
         
