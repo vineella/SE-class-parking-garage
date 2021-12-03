@@ -42,7 +42,7 @@ public class GUI_SS implements ActionListener{
 
         prepanel = new JPanel();
 
-        prepanel.setBorder(BorderFactory.createEmptyBorder(200, 200, 60, 200));
+        prepanel.setBorder(BorderFactory.createEmptyBorder(200, 200, 200, 200));
         prepanel.setLayout(new GridLayout(0, 1));
         prepanel.add(prelabel);
         prepanel.add(oldGarage);
