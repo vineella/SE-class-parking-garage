@@ -232,11 +232,10 @@ public class GUI_I implements ActionListener{
             dateIn = dateInInput.getText();
             timeIn = timeInInput.getText();
             if(isDateFormatted(timeIn, dateIn)==true){
-                client newClient = new client(firstName, lastName, cardNumber, phoneNumber, 
-                dateIn, timeIn, boolIsMember, whichFloor, whichSpot);
-                parkingGarage.setClientAt(whichFloor-1, whichSpot-1, newClient);
+                parkingGarage.setClientAt(whichFloor-1, whichSpot-1, new client(firstName, lastName, cardNumber, phoneNumber, 
+                dateIn, timeIn, boolIsMember, whichFloor, whichSpot));
                 //this line is temporary for testing
-                System.out.println(newClient.toString()); 
+                System.out.println(parkingGarage.getClientAt(whichFloor-1, whichSpot-1).toString()); 
             }else{
                 new GUI_I(whichFloor, whichSpot, true, parkingGarage);
             }

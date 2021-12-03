@@ -18,7 +18,6 @@ public class GUI_TO implements ActionListener {
     private JTextField timeOutInput;
     private String dateOut;
     private String timeOut;
-    private client Client;
     private double amountCharged;
     private static final int lengthOfDateString=10;
     private static final int lengthOfTimeString=5;
@@ -186,18 +185,17 @@ public class GUI_TO implements ActionListener {
             //the following line is for testing purposes only and should be
             //replaced with an instance of grabbing a specific client from the 
             //database when that becomes possible
-            Client = parkingGarage.getClientAt(whichFloor-1, whichSpot-1);
-            Client.setdateOut(dateOut);
-            Client.settimeOut(timeOut);
+            parkingGarage.getClientAt(whichFloor-1, whichSpot-1).setdateOut(dateOut);
+            parkingGarage.getClientAt(whichFloor-1, whichSpot-1).settimeOut(timeOut);
             if(isDateFormatted(timeOut, dateOut)==true){
-                System.out.println(Client.toString()); //this line is temporary for testing
+                System.out.println(parkingGarage.getClientAt(whichFloor-1, whichSpot-1).toString()); //this line is temporary for testing
                 try {
-                    amountCharged=Client.getPrice(didJustBecomeMember);
+                    amountCharged=parkingGarage.getClientAt(whichFloor-1, whichSpot-1).getPrice(didJustBecomeMember);
                 } catch (ParseException e1) {
                     e1.printStackTrace();
                 }
                 new GUI_P(true, parkingGarage, whichFloor, whichSpot);
-                GUI_P.setAmountCharged(amountCharged, Client);
+                GUI_P.setAmountCharged(amountCharged, parkingGarage.getClientAt(whichFloor-1, whichSpot-1));
                 //test code
                 System.out.println(GUI_P.getAmountCharged());
             }else{

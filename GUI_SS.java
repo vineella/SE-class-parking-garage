@@ -19,40 +19,48 @@ public class GUI_SS implements ActionListener{
     private static JButton coming;
     private static JButton leaving;
     private GUI garage;
-    private int gDoesExist;
+    private int gDoesExist=0;
     private static int numFloors;
     private static int numSpots;
     private static parkingGarage parkingGarage;
     private static boolean isUsingOldGarage=false;
     private JButton shutdown;
+    private boolean IDO=true;
+    private boolean justBootedUp;
 
-    public GUI_SS(){
-        preframe = new JFrame();
+    public GUI_SS(boolean justBootedUp, parkingGarage parkingGarage){
+        this.justBootedUp=justBootedUp;
+        if(justBootedUp==true){
+            preframe = new JFrame();
 
-        oldGarage = new JButton("I would like to use my previous garage.");
-        newGarage = new JButton("I would like to start a new garage.");
+            oldGarage = new JButton("I would like to use my previous garage.");
+            newGarage = new JButton("I would like to start a new garage.");
 
-        oldGarage.setActionCommand("o");
-        newGarage.setActionCommand("n");
+            oldGarage.setActionCommand("o");
+            newGarage.setActionCommand("n");
 
-        oldGarage.addActionListener(this);
-        newGarage.addActionListener(this);
+            oldGarage.addActionListener(this);
+            newGarage.addActionListener(this);
 
-        prelabel = new JLabel("Please select an option");
+            prelabel = new JLabel("Please select an option");
 
-        prepanel = new JPanel();
+            prepanel = new JPanel();
 
-        prepanel.setBorder(BorderFactory.createEmptyBorder(200, 200, 200, 200));
-        prepanel.setLayout(new GridLayout(0, 1));
-        prepanel.add(prelabel);
-        prepanel.add(oldGarage);
-        prepanel.add(newGarage);
+            prepanel.setBorder(BorderFactory.createEmptyBorder(200, 200, 200, 200));
+            prepanel.setLayout(new GridLayout(0, 1));
+            prepanel.add(prelabel);
+            prepanel.add(oldGarage);
+            prepanel.add(newGarage);
     
-        preframe.add(prepanel, BorderLayout.CENTER);
-        preframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        preframe.setTitle("Please select an option below.");
-        preframe.pack();
-        preframe.setVisible(true);
+            preframe.add(prepanel, BorderLayout.CENTER);
+            preframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            preframe.setTitle("Please select an option below.");
+            preframe.pack();
+            preframe.setVisible(true);
+        }else{
+            this.parkingGarage = parkingGarage;
+            pullUpgarage();
+        }
     }
 
     public static void setGarage(int numFloors, int numSpots){
@@ -123,8 +131,10 @@ public class GUI_SS implements ActionListener{
         if(isUsingOldGarage==true){
             //load old garage
         }else{
-            findGarageSize();
-            setGarage(numFloors, numSpots);
+            if(justBootedUp==true){
+                findGarageSize();
+                setGarage(numFloors, numSpots);
+            }
 
             frame = new JFrame();
 
@@ -160,7 +170,7 @@ public class GUI_SS implements ActionListener{
     }
 
     public static void main(String[] args){
-        new GUI_SS();
+        new GUI_SS(true, parkingGarage);
     }
 
     @Override
@@ -179,7 +189,6 @@ public class GUI_SS implements ActionListener{
         }else if (e.getActionCommand().equals("s")){ 
             //where we read out the garage to the flat file
         }else{
-            boolean IDO =true;
             if(e.getActionCommand().equals("c")){
                 IDO = true;
                 garage.isDroppingOff = IDO;
@@ -192,6 +201,7 @@ public class GUI_SS implements ActionListener{
             }else{
                 garage = new GUI(IDO, numFloors, numSpots, parkingGarage);
                 gDoesExist = 1;
+                frame.setVisible(false);
             }
         }  
     }

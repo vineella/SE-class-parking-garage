@@ -17,8 +17,10 @@ public class GUI_P implements ActionListener{
     private static JButton done;
     private static double amountCharged;
     private static client Client;
+    private parkingGarage parkingGarage;
 
     public GUI_P(boolean isCheckingOut, parkingGarage parkingGarage, int whichFloor, int whichSpot){
+        this.parkingGarage = parkingGarage;
         frame = new JFrame();
         Client = parkingGarage.getClientAt(whichFloor-1, whichSpot-1);
         if(isCheckingOut==false){
@@ -68,7 +70,8 @@ public class GUI_P implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         frame.setVisible(false);
-        GUI_SS.frame.setVisible(true);
+        //GUI_SS.frame.setVisible(true);
+        new GUI_SS(false, parkingGarage);
     }
 
 }

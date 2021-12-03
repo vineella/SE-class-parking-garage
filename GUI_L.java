@@ -40,6 +40,15 @@ public class GUI_L implements ActionListener {
             spotButtons[i].addActionListener(this);
             panel.add(spotButtons[i]);
         }
+        //iterate through and change the labels to "taken" if the spot is taken
+        for(int i=0; i < numSpots; i++){
+            int j=i+1;
+            if(parkingGarage.isAvailable(parkingGarage.getArray(), intWhichFloor-1,i)==false){
+                spotButtons[i].setText("Spot "+j+" TAKEN");
+            }
+            panel.revalidate();
+            panel.repaint();
+        }
         button_r = new JButton("Return to Previous Page");
         button_r.setActionCommand("r");
         button_r.addActionListener(this);
@@ -80,13 +89,12 @@ public class GUI_L implements ActionListener {
             String whichSpot2 = new String(e.getActionCommand());
             int intWhichSpot2 = Integer.parseInt(whichSpot2);
             if(parkingGarage.isAvailable(parkingGarage.getArray(), intWhichFloor-1,intWhichSpot2-1)==false){
-            parkingGarage.setArray(intWhichFloor-1, intWhichSpot2-1, 0);
-            spotButtons[intWhichSpot2-1].setText("Spot "+whichSpot2);
-            panel.revalidate();
-            panel.repaint();
-
-            new GUI_TO(false, parkingGarage, intWhichFloor, intWhichSpot2);
-            frame.setVisible(false);
+                parkingGarage.setArray(intWhichFloor-1, intWhichSpot2-1, 0);
+                spotButtons[intWhichSpot2-1].setText("Spot "+whichSpot2);
+                panel.revalidate();
+                panel.repaint();
+                new GUI_TO(false, parkingGarage, intWhichFloor, intWhichSpot2);
+                frame.setVisible(false);
             }
         }
     }
