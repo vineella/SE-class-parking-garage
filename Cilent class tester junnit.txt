@@ -1,0 +1,125 @@
+package SE-class-parking-garage
+
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert;
+
+public class clientTest {
+	
+	public clientTest() {
+	}
+
+	@BeforeClass
+	public static void setUpClass() {
+	}
+
+	@AfterClass
+	public static void tearDownClass() {
+	}
+	
+	@Test 
+	public string testgetfirstN() {
+	int firstN = John;
+	int expResult = John;
+	int result = SE-class-parking-garage.getfirstN(firstN);
+	assertEquals(expResult, result);
+	}
+	
+	@Test 
+	public string testLastN() {
+	int LastN = Pina;
+	int expResult = Pina;
+	int result = SE-class-parking-garage.getLastN(LastN);
+	assertEquals(expResult, result);
+	}
+
+	@Test 
+	public string testgetcardNum() {
+	int cardNum = 3241;
+	int expResult = 3241;
+	int result = SE-class-parking-garage.getcardNum(cardNum);
+	assertEquals(expResult, result);
+	}
+	
+	@Test 
+	public string testgetphoneNum() {
+	int getphoneNum = 831-324-5671;
+	int expResult = 831-324-5671;
+	int result = SE-class-parking-garage.getphoneNum(phoneNum);
+	assertEquals(expResult, result);
+	}
+
+	@Test 
+	public string testgettimeIn() {
+	int timeIn = 6:40;
+	int expResult = 6:40;
+	int result = SE-class-parking-garage.gettimeIn(timeIn);
+	assertEquals(expResult, result);
+	}
+	
+	@Test 
+	public string testgetdateIn() {
+	int dateIn = 06/12/21;
+	int expResult = 06/12/21;
+	int result = SE-class-parking-garage.getdateIn(dateIn);
+	assertEquals(expResult, result);
+	}
+
+	@Test 
+	public string testsetdateOut() {
+	int newDateOut = 10/30/21;
+	int expResult = 10/30/21;
+	int result = SE-class-parking-garage.getsetdateOut(newDateOut);
+	assertEquals(expResult, result);
+	}
+	
+	@Test 
+	public string testgetdateOut() {
+	int dateOut = 12/01/21;
+	int expResult = 12/01/21;
+	int result = SE-class-parking-garage.getdateOut(dateOut);
+	assertEquals(expResult, result);
+	}
+
+	@Test 
+	public string testsettimeOut() {
+	int newTimeOut = 1:24;
+	int expResult = 1:24;
+	int result = SE-class-parking-garage.settimeOut(newTimeOut);
+	assertEquals(expResult, result);
+	}
+
+	@Test 
+	public string testgettimeOut() {
+	int timeOut = 12;
+	int expResult = 12;
+	int result = SE-class-parking-garage.gettimeOut(timeOut);
+	assertEquals(expResult, result);
+	}
+	
+	@Test 
+	public string testgetIsMember() {
+	int isMember = true;
+	int expResult = true;
+	int result = SE-class-parking-garage.getisMember(isMember);
+	assertEquals(expResult, result);
+	}
+	
+	@Test 
+	public string testgetFloor() {
+	int floor = 4;
+	int expResult = 4;
+	int result = SE-class-parking-garage.getFloor(floor);
+	assertEquals(expResult, result);
+	}
+
+	@Test 
+	public string testgetSpot() {
+	int spot = 1,2;
+	int expResult = 1,2;
+	int result = SE-class-parking-garage.getSpot(spot);
+	assertEquals(expResult, result);
+	}
+	
