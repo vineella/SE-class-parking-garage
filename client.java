@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -114,7 +115,10 @@ public class client {
         System.out.println("Date in: "+date1+" Date out: "+date2+" Duration: "+durationInDays+"days Price: $"+price);
 		
         //we need to ensure that the price only has two decimal places
-        price=Math.round(price*100.0)/100.0;
-        return price;
+        DecimalFormat dFormatter = new DecimalFormat("0.00");
+        String formatted = dFormatter.format(price);
+        double bill = Double.parseDouble(formatted);
+        return bill;
     }
+
 }
