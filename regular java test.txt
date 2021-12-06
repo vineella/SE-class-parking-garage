@@ -1,0 +1,57 @@
+System.out.printLn( + Pk + ) <- this is shoved in between lines to make sure it runs it fine 
+
+Public String toString(){
+	return(this.firstN);
+}
+
+Public String toString(){
+	return(this.lastN);
+}
+
+Public String toString(){
+	return(this.cardNum);
+}
+
+Public String toString(){
+	return(this.phoneNum);
+}
+
+Public String toString(){
+	return(this.dateIn);
+}
+
+Public String toString(){
+	return(this.timeIn);
+}
+
+Public String toString(){
+	return(this.dateOut);
+}
+
+Public String toString(){
+	return(this.timeOut);
+}
+
+Public String toString(){
+	return(this.isMember);
+}
+
+Public String toString(){
+	return(floor);
+}
+
+Public String toString(){
+	return(spot);
+}
+
+testing report by manual inputs: 
+-if wrong date and time entered it crashes 
+-if clicking use the "previous garage button it crashes program"
+-clicking "start a new garage" freezes the program for some reason
+( might be price bracket code) 
+-need to change fonts (time & times) not supported by this java logical font 
+-no response for when trying to enter in the number of floors for garage ( terminal freeze) 
+
+
+
+
