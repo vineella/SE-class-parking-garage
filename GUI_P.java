@@ -26,7 +26,7 @@ public class GUI_P implements ActionListener{
         if(isCheckingOut==false){
             label = new JLabel("Thanks! You checked into Floor: "+Client.getFloor()+" Spot: "
             +Client.getSpot()+" under the name "+Client.getfirstN()+" "+Client.getLastN()
-            +" at "+Client.gettimeIn()+" on "+Client.getdateIn());
+            +" at "+Client.gettimeIn()+" on "+Client.getdateIn()+"!");
         }
         done = new JButton("Main Menu");
         done.addActionListener(this);
