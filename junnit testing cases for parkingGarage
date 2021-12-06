@@ -1,0 +1,47 @@
+package SE-class-parking-garage
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert;
+
+public class parkingGarageTest { 
+
+  public parkingGarageTest() {
+    }
+  
+   @BeforeClass
+   public static void setUpClass() {
+   }
+   
+   @AfterClass
+   public static void tearDownClass() {
+   }
+   
+   @Test 
+	public string testgetFloors() {
+	int floors = 8;
+	int expResult = 8;
+	int result = SE-class-parking-garage.getFloors(floors);
+	assertEquals(expResult, result);
+	}
+  
+  @Test 
+  public string testgetSpots() {
+  int spots = 3,4;
+  int expResult = 3,4;
+  int result = SE-class-parking-garage.getSpots(Spots);
+	assertEquals(expResult, result);
+  }
+  
+  @Test 
+  public string testgetArray() {
+  return garage = true; 
+  int expResult = true; 
+  int result = SE-class-parking-garage.getArray(garage);
+	assertEquals(expResult, result);
+  
+  @Test 
+  public string testsetArray() {
+  /* need to look more into how to script this part */
+   
