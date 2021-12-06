@@ -1,0 +1,109 @@
+package prices;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert; ( I think I need this?)
+
+public class priceBracketTester {
+	
+	public priceBracketTester() {
+	}
+ 
+	@Before
+	public static void setUpClass(){
+	}
+
+	@AfterClass
+	public static void tearDownClass()
+
+	@Test
+	public void testPrice13() {
+	int hours = 13
+	int expResult = 22;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+
+	@Test
+	public void testPrice12() {
+	int hours = 11
+	int expResult = 12;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+	
+	@Test
+	public void testPricenull() {
+	int hours = 0
+	int expResult = 0;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+	
+	@Test
+	public void testticketT() {
+	int lostTicket = true
+	int expResult = lostPrice;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+
+	@Test
+	public void testticketF() {
+	int lostTicket = false
+	int expResult = finalPrice;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+
+	@Test
+	public void testMemT() {
+	int isMember = true
+	int expResult = price * discount;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+	
+	@Test
+	public void testMemF() {
+	int isMember = false
+	int expResult = price;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+	
+	@Test
+	public void testInsurT() {
+	int hasInsurance = true
+	int expResult = price + 5;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+	
+	@Test
+	public void testInsurF() {
+	int hasInsurance = false
+	int expResult = price;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+	
+	@Test
+	public void testInsurandTickT() {
+	int hasInsurance = true
+	int lostTicket = true
+	int expResult = finalPrice;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+
+	@Test
+	public void testInsurandTickF() {
+	int hasInsurance = false
+	int lostTicket = false
+	int expResult = price;
+	int result = priceBracket.getPrice;
+	assertEquals(expResult,result);
+	}
+}
