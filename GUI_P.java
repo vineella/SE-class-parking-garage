@@ -72,6 +72,7 @@ public class GUI_P implements ActionListener{
         frame.setVisible(false);
         //GUI_SS.frame.setVisible(true);
         new GUI_SS(false, parkingGarage);
+        GUI_SS.frame.setVisible(true);
     }
 
 }

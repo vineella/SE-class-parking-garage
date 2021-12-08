@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class GUI_SS implements ActionListener{
@@ -22,7 +24,7 @@ public class GUI_SS implements ActionListener{
     private int gDoesExist=0;
     private static int numFloors;
     private static int numSpots;
-    private static parkingGarage parkingGarage;
+    public static parkingGarage parkingGarage;
     private static boolean isUsingOldGarage=false;
     private JButton shutdown;
     private boolean IDO=true;
@@ -57,6 +59,7 @@ public class GUI_SS implements ActionListener{
             preframe.setTitle("Please select an option below.");
             preframe.pack();
             preframe.setVisible(true);
+            this.parkingGarage= new parkingGarage(0, 0);
         }else{
             this.parkingGarage = parkingGarage;
             pullUpgarage();
@@ -129,44 +132,57 @@ public class GUI_SS implements ActionListener{
 
     public void pullUpgarage(){
         if(isUsingOldGarage==true){
-            //load old garage
-        }else{
-            if(justBootedUp==true){
-                findGarageSize();
-                setGarage(numFloors, numSpots);
+            try {
+                ObjectFileProcessing ofp = new ObjectFileProcessing();
+                numFloors = ofp.readObject("Floors.txt");
+                numSpots = ofp.readObject("Spots.txt");
+                parkingGarage.setFloors(numFloors);
+                parkingGarage.setSpots(numSpots);
+                parkingGarage.setWholeArray(ofp.importGarage(numFloors, numSpots));
+                System.out.println(parkingGarage.toString()); //test code
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-
-            frame = new JFrame();
-
-            coming = new JButton("I am leaving my car here");
-            leaving = new JButton("I am leaving with my car");
-            shutdown = new JButton("Power Off");
-
-
-            coming.setActionCommand("c");
-            leaving.setActionCommand("l");
-            shutdown.setActionCommand("s");
-    
-            coming.addActionListener(this);
-            leaving.addActionListener(this);
-            shutdown.addActionListener(this);
-    
-            label = new JLabel("Please select an option below.");
-    
-            panel = new JPanel();
-            panel.setBorder(BorderFactory.createEmptyBorder(200, 200, 60, 200));
-            panel.setLayout(new GridLayout(0, 1));
-            panel.add(label);
-            panel.add(coming);
-            panel.add(leaving);
-            panel.add(shutdown);
-    
-            frame.add(panel, BorderLayout.CENTER);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setTitle("Welcome to Group 5 Parking Garage!");
-            frame.pack();
-            frame.setVisible(true);
         }
+        if(isUsingOldGarage==false && justBootedUp==true){
+            findGarageSize();
+            setGarage(numFloors, numSpots);
+        }
+
+        frame = new JFrame();
+
+        coming = new JButton("I am leaving my car here");
+        leaving = new JButton("I am leaving with my car");
+        shutdown = new JButton("Power Off");
+
+
+        coming.setActionCommand("c");
+        leaving.setActionCommand("l");
+        shutdown.setActionCommand("s");
+    
+        coming.addActionListener(this);
+        leaving.addActionListener(this);
+        shutdown.addActionListener(this);
+    
+        label = new JLabel("Please select an option below.");
+    
+        panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(200, 200, 60, 200));
+        panel.setLayout(new GridLayout(0, 1));
+        panel.add(label);
+        panel.add(coming);
+        panel.add(leaving);
+        panel.add(shutdown);
+    
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Welcome to Group 5 Parking Garage!");
+        frame.pack();
+        frame.setVisible(false);
     }
 
     public static void main(String[] args){
@@ -182,12 +198,25 @@ public class GUI_SS implements ActionListener{
             isUsingOldGarage = true;
             pullUpgarage();
             preframe.setVisible(false);
+            frame.setVisible(true);
         }else if(e.getActionCommand().equals("n")){
             isUsingOldGarage = false;
             pullUpgarage();
             preframe.setVisible(false);
+            frame.setVisible(true);
         }else if (e.getActionCommand().equals("s")){ 
-            //where we read out the garage to the flat file
+            try {
+                ObjectFileProcessing ofp = new ObjectFileProcessing();
+                ofp.storeGarage(parkingGarage.getArray());
+                String floors="Floors.txt";
+                String spots="Spots.txt";
+                ofp.storeObject(numFloors, floors);
+                ofp.storeObject(numSpots, spots);
+                frame.setVisible(false);
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }else{
             if(e.getActionCommand().equals("c")){
                 IDO = true;
