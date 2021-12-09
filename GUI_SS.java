@@ -70,6 +70,14 @@ public class GUI_SS implements ActionListener{
         parkingGarage = new parkingGarage(numFloors, numSpots);
     }
 
+    public static void setNumFloors(int f){
+        numFloors=f;
+    }
+
+    public static void setNumSpots(int s){
+        numSpots=s;
+    }
+
     public static int getNumFloors(){
         return numFloors;
     }
@@ -134,16 +142,12 @@ public class GUI_SS implements ActionListener{
         if(isUsingOldGarage==true){
             try {
                 ObjectFileProcessing ofp = new ObjectFileProcessing();
-                numFloors = ofp.readObject("Floors.txt");
-                numSpots = ofp.readObject("Spots.txt");
-                parkingGarage.setFloors(numFloors);
-                parkingGarage.setSpots(numSpots);
-                parkingGarage.setWholeArray(ofp.importGarage(numFloors, numSpots));
-                System.out.println(parkingGarage.toString()); //test code
+                parkingGarage.setWholeArray(ofp.importGarage());
+                numFloors=parkingGarage.getArray().length;
+                numSpots=parkingGarage.getArray()[0].length;
+                parkingGarage.setFloors(parkingGarage.getArray().length);
+                parkingGarage.setSpots(parkingGarage.getArray()[0].length);
             } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
@@ -212,7 +216,7 @@ public class GUI_SS implements ActionListener{
                 String spots="Spots.txt";
                 ofp.storeObject(numFloors, floors);
                 ofp.storeObject(numSpots, spots);
-                frame.setVisible(false);
+                System.exit(0);
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();

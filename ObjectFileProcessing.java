@@ -45,18 +45,24 @@ public class ObjectFileProcessing {
     } 
     
 
-    public int[][] importGarage(int rows, int columns) throws FileNotFoundException{
+    public int[][] importGarage() throws FileNotFoundException{
+        /*Scanner presc = new Scanner(new BufferedReader(new FileReader("arrayData.txt")));
+        String prewoop = presc.nextLine();
+        String[] preline = prewoop.trim().split(" ");
+        int spots = preline.length;
+        int floors=0;
+        while(presc.hasNextLine()){
+            floors++;
+        }*/
+        int [][] Garage = new int[5][25];
         Scanner sc = new Scanner(new BufferedReader(new FileReader("arrayData.txt")));
-        int [][] Garage = new int[rows][columns];
-        int i =0;
-        while (sc.hasNextLine()){
+        for(int i=0;i<5;i++){
                 String woop = sc.nextLine();
                 System.out.println(woop);
-                String[] line = woop.trim().split(" ");
+                String[] line = woop.trim().split("");
                 for (int j=0; j<line.length; j++){
                     Garage[i][j] = Integer.parseInt(line[j]);
                 }
-                i++;
             }
         return Garage;
 }

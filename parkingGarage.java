@@ -40,7 +40,12 @@ class parkingGarage {
     }
 
     public void setWholeArray(int[][] newGarage){
-        garage=newGarage;
+        garage= new int[newGarage.length][newGarage[0].length];
+        for(int i=0; i<newGarage.length;i++){
+            for(int j=0;j<newGarage[0].length;j++){
+                garage[i][j]=newGarage[i][j];
+            }
+        }
     }
 
     //method to fill a specific spot
@@ -64,7 +69,7 @@ class parkingGarage {
 
     //Method to print info in specific way
     public String toString() {
-        return ("The parking floor are" + this.getFloors() + "and the number of spots are" + this.getSpots());
+        return ("There are " + this.getFloors() + " floors and the number of spots are" + this.getSpots());
     } 
 
     //create a code that searches for a specific spot
@@ -83,9 +88,9 @@ class parkingGarage {
         int counter = 0;
         for(int i =0; i<spots; i++){
             if (garage[whichFloor][i] == 0) {
-            counter++; //this is just test code so it will compile
+            counter++;
             }
         }  
-    return counter; //this is just test code so it will compile
+        return counter;
     }
 }
