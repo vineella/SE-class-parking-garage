@@ -45,3 +45,32 @@ public class parkingGarageTest {
   public string testsetArray() {
   /* need to look more into how to script this part */
    
+   @Test 
+  public string testfillsSpot() {
+  int result = 1;
+  int expResult = 1;
+  int result = SE-class-parking-garage.fillsSpot(garage[userFloor][userSpot]);
+	assertEquals(expResult, result);
+}
+ @Test 
+  public string testNumSpotsAvailble() {
+  int i = 10;
+  int expResult = 10;
+  int result = SE-class-parking-garage.numSpotsAvailable(i);
+	assertEquals(expResult, result);
+}
+ @Test 
+  public string testisAvaible() {
+  availability=true
+  int expResult = true;
+  int result = SE-class-parking-garage.isAvailable(int[][] garage, int userFloor, int userSpot);
+	assertEquals(expResult, availability);
+}
+ @Test 
+  public string testisAvaible2() {
+  availability=false
+  int expResult = false;
+  int result = SE-class-parking-garage.isAvailable(int[][] garage, int userFloor, int userSpot);
+	assertEquals(expResult, availability);
+}
+ 
